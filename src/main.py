@@ -5,12 +5,12 @@ Date:        2020-3-10 15:28:34
 Description: 
 """
 
-from mpi4py import *
+import mpi4py.MPI as MPI
 import numpy as np
 import argparse
 from pprint import pprint
 import json
-from collections import defaultdict
+from collections import Counter
 
 
 def process_data(location_info, grids_info, count_map):
@@ -35,22 +35,51 @@ def main(grid_data_path, geo_data_path):
         read_data = json.load(file)
         grids = [feature["properties"] for feature in read_data["features"]]
 
-    # reads data
-    positions = None
-    with open(geo_data_path, encoding='utf-8') as file:
-        read_data = json.load(file)
-        positions = [message["json"]["geo"] for message in read_data]
+    # initialize communicator
+    comm = MPI.COMM_WORLD
+    comm_rank = comm.Get_rank()
+    comm_size = comm.Get_size()
+    # print(comm_rank, comm_size)
 
-    pprint(positions)
+    positions = None
+    split_positions = None
+    # reads data in root process
+    if comm_rank == 0:
+        with open(geo_data_path, encoding='utf-8') as file:
+            read_data = json.load(file)
+            positions = [message["json"]["geo"] for message in read_data]
+            split_positions = np.array_split(positions, comm_size)
+
+    # divide data to be processed to available processors
+    local_data = comm.scatter(split_positions, root=0)
+
+    # pprint(positions)
     # pprint(grids)
 
-    count_map = defaultdict(lambda: 0)
-    # process positions data
-    for position in positions:
+    # initialize count map for current_process
+    count_map = {i["id"]: 0 for i in grids}
+
+    # process given data
+    for position in local_data:
         count_map = process_data(position, grids, count_map)
 
-    # output summary
-    print(count_map)
+    # merge count_map
+    merged_count_map = comm.reduce(count_map, root=0, op=merge_dicts)
+
+    # output summary in root process
+    if comm_rank == 0:
+        print(Counter(merged_count_map).most_common())
+
+
+def merge_dicts(x: dict, y: dict):
+    """
+    :param x:
+    :param y:
+    :return: merge two dictionaries with common key's values added
+    """
+    z = Counter(x)
+    z.update(Counter(y))
+    return z
 
 
 def is_in_grid(xmax, xmin, ymax, ymin, x, y):
