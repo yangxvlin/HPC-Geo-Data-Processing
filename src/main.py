@@ -14,15 +14,15 @@ import json
 from collections import Counter
 
 
-def process_data(location_info, grids_info, count_map):
+def process_data(data, grids_info, count_map):
     """
-    :param location_info: {'coordinates': [-34.92320424, 138.59870907], 'type': 'Point'}
+    :param data:
     :param grids_info:  [{'id': 'A1', 'xmax': 144.85, 'xmin': 144.7, 'ymax': -37.5, 'ymin': -37.65}, ...]
     :param count_map: {'id': int}
     :return:
     """
     for grid_info in grids_info:
-        y, x = location_info["coordinates"]
+        y, x = data["json"]["geo"]["coordinates"]
         if is_in_grid(grid_info["xmax"], grid_info["xmin"], grid_info["ymax"], grid_info["ymin"], x, y):
             count_map[grid_info["id"]] += 1
             return count_map
@@ -42,15 +42,13 @@ def main(grid_data_path, geo_data_path):
     comm_size = comm.Get_size()
     # print(comm_rank, comm_size)
 
-    positions = None
     split_positions = None
     # reads data in root process
     if comm_rank == 0:
         start = datetime.datetime.now()
         with open(geo_data_path, encoding='utf-8') as file:
             read_data = json.load(file)
-            positions = [message["json"]["geo"] for message in read_data]
-            split_positions = np.array_split(positions, comm_size)
+            split_positions = np.array_split(read_data, comm_size)
 
     # divide data to be processed to available processors
     local_data = comm.scatter(split_positions, root=0)
