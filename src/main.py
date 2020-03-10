@@ -15,11 +15,24 @@ import json
 def main(grid_data_path, geo_data_path):
     # read grid info
     grids = None
-    with open(grid_data_path) as file:
+    with open(grid_data_path, encoding='utf-8') as file:
         read_data = json.load(file)
         grids = [feature["properties"] for feature in read_data["features"]]
 
+    # reads data
+    positions = None
+    with open(geo_data_path, encoding='utf-8') as file:
+        read_data = json.load(file)
+        positions = [message["json"]["geo"] for message in read_data]
+    pprint(positions)
+
     pprint(grids)
+
+
+def is_in_grid(xmax, xmin, ymax, ymin, x, y):
+    if xmin <= x <= xmax and ymin <= y <= ymax:
+        return True
+    return False
 
 
 if __name__ == "__main__":
