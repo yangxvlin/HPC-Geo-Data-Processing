@@ -4,6 +4,7 @@ Student id:  904904
 Date:        2020-3-10 15:28:34
 Description: 
 """
+import datetime
 
 import mpi4py.MPI as MPI
 import numpy as np
@@ -45,6 +46,7 @@ def main(grid_data_path, geo_data_path):
     split_positions = None
     # reads data in root process
     if comm_rank == 0:
+        start = datetime.datetime.now()
         with open(geo_data_path, encoding='utf-8') as file:
             read_data = json.load(file)
             positions = [message["json"]["geo"] for message in read_data]
@@ -69,6 +71,8 @@ def main(grid_data_path, geo_data_path):
     # output summary in root process
     if comm_rank == 0:
         print(Counter(merged_count_map).most_common())
+        end = datetime.datetime.now()
+        print(f"Programs runs", end - start)
 
 
 def merge_dicts(x: dict, y: dict):
