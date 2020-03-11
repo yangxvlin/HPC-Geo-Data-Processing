@@ -29,8 +29,9 @@ def main(grid_data_path, geo_data_path):
 
     start = datetime.now()
     grids_summary_dict = read_grid_information(grid_data_path)
-    read_grid_info_end = datetime.now()
-    print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
+    # TODO should read grid info in each process?
+    # read_grid_info_end = datetime.now()
+    # print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
 
     # only one process, no need to split data
     if comm_size == 1:
