@@ -6,8 +6,6 @@ Description:
 """
 
 from datetime import datetime
-from functools import reduce
-
 import mpi4py.MPI as MPI
 import numpy as np
 import argparse
@@ -18,11 +16,7 @@ from GridSummary import GridSummary
 
 
 def main(grid_data_path, geo_data_path):
-    grids_summary = read_grid_information(grid_data_path)
-    grids_summary_dict = {}
-    # all_grids_id = []
-    for g in grids_summary:
-        grids_summary_dict[g.grid.id] = g
+    grids_summary_dict = read_grid_information(grid_data_path)
 
     # initialize communicator
     comm = MPI.COMM_WORLD
@@ -71,7 +65,7 @@ def main(grid_data_path, geo_data_path):
 
                 recv_count += 1
                 twitter_data = TwitterData(local_preprocessed_line)
-                grids_summary = list(map(lambda x: x.summarize(twitter_data), grids_summary))
+                grids_summary_dict = {k: v.summarize(twitter_data) for k, v in grids_summary_dict.items()}
 
             print("process #{} recv {} lines.".format(comm_rank, recv_count))
             # print(grids_summary)
