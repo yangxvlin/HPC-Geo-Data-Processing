@@ -22,3 +22,20 @@ class GridSummary:
 
     def __repr__(self):
         return "{}: {}".format(self.grid.id, self.count)
+
+    def __add__(self, other):
+        assert self.grid.id == other.grid.id
+        self.count += other.count
+        return self
+
+    def __hash__(self):
+        return hash(self.grid)
+
+    @staticmethod
+    def merge_grid_summary_list(x: dict, y: dict):
+        assert len(x) == len(y)
+        res = x.copy()
+
+        for grid_id in res:
+            res[grid_id] += y[grid_id]
+        return res

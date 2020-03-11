@@ -6,33 +6,23 @@ Description:
 """
 
 from datetime import datetime
+from functools import reduce
+
 import mpi4py.MPI as MPI
 import numpy as np
 import argparse
 from pprint import pprint
-import json
-from collections import Counter
 from TwitterData import TwitterData
 from util import read_grid_information, read_data_line_by_line, preprocess_data
-
-
-def process_data(data, grids_info, count_map):
-    """
-    :param data:
-    :param grids_info:  [{'id': 'A1', 'xmax': 144.85, 'xmin': 144.7, 'ymax': -37.5, 'ymin': -37.65}, ...]
-    :param count_map: {'id': int}
-    :return:
-    """
-    for grid_info in grids_info:
-        y, x = data["json"]["geo"]["coordinates"]
-        if is_in_grid(grid_info["xmax"], grid_info["xmin"], grid_info["ymax"], grid_info["ymin"], x, y):
-            count_map[grid_info["id"]] += 1
-            return count_map
-    return count_map
+from GridSummary import GridSummary
 
 
 def main(grid_data_path, geo_data_path):
     grids_summary = read_grid_information(grid_data_path)
+    grids_summary_dict = {}
+    # all_grids_id = []
+    for g in grids_summary:
+        grids_summary_dict[g.grid.id] = g
 
     # initialize communicator
     comm = MPI.COMM_WORLD
@@ -51,37 +41,51 @@ def main(grid_data_path, geo_data_path):
                 twitter_data = TwitterData(preprocessed_line)
                 grids_summary = list(map(lambda x: x.summarize(twitter_data), grids_summary))
 
-    # else:
-    #     if comm_rank == 0:
-    #
-    #     else:
+    else:
+        if comm_rank == 0:
+            next_target = 1
+            send_count = 0
 
-    # merge count_map
-    # merged_count_map = comm.reduce(count_map, root=0, op=merge_dicts)
+            for line in read_data_line_by_line(geo_data_path):
+                preprocessed_line = preprocess_data(line)
+                # the line is data
+                if preprocessed_line:
+                    send_count += 1
+                    comm.send(preprocessed_line, next_target)
+                    # scatter data line by line to slave process
+                    next_target += 1
+                    if next_target == comm_size:
+                        next_target = 1
+                # print("process #{} line {}".format(comm_rank, i))
+
+            for i in range(1, comm_size):
+                comm.send(None, i)
+            print("process #{} send {} lines.".format(comm_rank, send_count))
+
+        else:
+            recv_count = 0
+            while True:
+                local_preprocessed_line = comm.recv(source=0)
+                if not local_preprocessed_line:
+                    break
+
+                recv_count += 1
+                twitter_data = TwitterData(local_preprocessed_line)
+                grids_summary = list(map(lambda x: x.summarize(twitter_data), grids_summary))
+
+            print("process #{} recv {} lines.".format(comm_rank, recv_count))
+            # print(grids_summary)
+            # print(grids_summary_dict)
+
+    reduced_grids_summary_dict = comm.reduce(grids_summary_dict, root=0, op=GridSummary.merge_grid_summary_list)
 
     # output summary in root process
     if comm_rank == 0:
-        grids_summary = sorted(grids_summary, key=lambda x: x.count, reverse=True)
-        pprint(grids_summary)
+        merged_grids_summary = sorted(reduced_grids_summary_dict.values(), key=lambda x: x.count, reverse=True)
+        pprint(merged_grids_summary)
+
         end = datetime.now()
         print(f"Programs runs", end - start)
-
-
-def merge_dicts(x: dict, y: dict):
-    """
-    :param x:
-    :param y:
-    :return: merge two dictionaries with common key's values added
-    """
-    z = Counter(x)
-    z.update(Counter(y))
-    return z
-
-
-def is_in_grid(xmax, xmin, ymax, ymin, x, y):
-    if xmin <= x <= xmax and ymin <= y <= ymax:
-        return True
-    return False
 
 
 if __name__ == "__main__":
