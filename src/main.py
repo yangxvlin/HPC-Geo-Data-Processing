@@ -16,8 +16,11 @@ from GridSummary import GridSummary
 
 
 def main(grid_data_path, geo_data_path):
-    grids_summary_dict = read_grid_information(grid_data_path)
-
+    """
+    :param grid_data_path:
+    :param geo_data_path:
+    TODO optimize summarize(), i.e. do graph search in stead of looping over all grids
+    """
     # initialize communicator
     comm = MPI.COMM_WORLD
     comm_rank = comm.Get_rank()
@@ -25,6 +28,9 @@ def main(grid_data_path, geo_data_path):
     # print(comm_rank, comm_size)
 
     start = datetime.now()
+    grids_summary_dict = read_grid_information(grid_data_path)
+    read_grid_info_end = datetime.now()
+    print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
 
     # only one process, no need to split data
     if comm_size == 1:
@@ -33,7 +39,7 @@ def main(grid_data_path, geo_data_path):
             # the line is data
             if preprocessed_line:
                 twitter_data = TwitterData(preprocessed_line)
-                grids_summary = list(map(lambda x: x.summarize(twitter_data), grids_summary))
+                grids_summary_dict = {k: v.summarize(twitter_data) for k, v in grids_summary_dict.items()}
 
     else:
         if comm_rank == 0:
@@ -50,7 +56,6 @@ def main(grid_data_path, geo_data_path):
                     next_target += 1
                     if next_target == comm_size:
                         next_target = 1
-                # print("process #{} line {}".format(comm_rank, i))
 
             for i in range(1, comm_size):
                 comm.send(None, i)
@@ -68,8 +73,6 @@ def main(grid_data_path, geo_data_path):
                 grids_summary_dict = {k: v.summarize(twitter_data) for k, v in grids_summary_dict.items()}
 
             print("process #{} recv {} lines.".format(comm_rank, recv_count))
-            # print(grids_summary)
-            # print(grids_summary_dict)
 
     reduced_grids_summary_dict = comm.reduce(grids_summary_dict, root=0, op=GridSummary.merge_grid_summary_list)
 
