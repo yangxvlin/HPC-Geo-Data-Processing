@@ -6,6 +6,7 @@ Description: class to store collected information for grids
 """
 
 from Grid import Grid
+from TwitterData import TwitterData
 
 
 class GridSummary:
@@ -13,7 +14,11 @@ class GridSummary:
         self.grid = grid
         self.count = 0
 
-    def summarize(self, data: dict):
-        y, x = data["json"]["geo"]["coordinates"]
+    def summarize(self, data: TwitterData):
+        y, x = data.location
         if self.grid.is_in_grid(x, y):
             self.count += 1
+        return self
+
+    def __repr__(self):
+        return "{}: {}".format(self.grid.id, self.count)

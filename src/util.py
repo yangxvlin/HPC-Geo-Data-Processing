@@ -15,9 +15,9 @@ def preprocess_data(data: str):
     :param data:
     :return: data with end ',' truncated otherwise return None
     """
-    if data.endswith(',\n'):
+    if data.endswith('},\n'):
         return data[:-2]
-    elif data.endswith(','):
+    elif data.endswith('}\n'):
         return data[:-1]
     return None
 
@@ -32,3 +32,9 @@ def read_grid_information(file_path: str):
             grids_summary.append(GridSummary(grid))
 
     return grids_summary
+
+
+def read_data_line_by_line(file_path: str):
+    with open(file_path, encoding='utf-8') as file:
+        for line in file:
+            yield line

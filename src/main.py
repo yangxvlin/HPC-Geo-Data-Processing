@@ -4,14 +4,16 @@ Student id:  904904
 Date:        2020-3-10 15:28:34
 Description: 
 """
-import datetime
 
+from datetime import datetime
 import mpi4py.MPI as MPI
 import numpy as np
 import argparse
 from pprint import pprint
 import json
 from collections import Counter
+from TwitterData import TwitterData
+from util import read_grid_information, read_data_line_by_line, preprocess_data
 
 
 def process_data(data, grids_info, count_map):
@@ -30,11 +32,7 @@ def process_data(data, grids_info, count_map):
 
 
 def main(grid_data_path, geo_data_path):
-    # read grid info
-    grids = None
-    with open(grid_data_path, encoding='utf-8') as file:
-        read_data = json.load(file)
-        grids = [feature["properties"] for feature in read_data["features"]]
+    grids_summary = read_grid_information(grid_data_path)
 
     # initialize communicator
     comm = MPI.COMM_WORLD
@@ -42,34 +40,30 @@ def main(grid_data_path, geo_data_path):
     comm_size = comm.Get_size()
     # print(comm_rank, comm_size)
 
-    split_positions = None
-    # reads data in root process
-    if comm_rank == 0:
-        start = datetime.datetime.now()
-        with open(geo_data_path, encoding='utf-8') as file:
-            read_data = json.load(file)
-            split_positions = np.array_split(read_data, comm_size)
+    start = datetime.now()
 
-    # divide data to be processed to available processors
-    local_data = comm.scatter(split_positions, root=0)
+    # only one process, no need to split data
+    if comm_size == 1:
+        for line in read_data_line_by_line(geo_data_path):
+            preprocessed_line = preprocess_data(line)
+            # the line is data
+            if preprocessed_line:
+                twitter_data = TwitterData(preprocessed_line)
+                grids_summary = list(map(lambda x: x.summarize(twitter_data), grids_summary))
 
-    # pprint(positions)
-    # pprint(grids)
-
-    # initialize count map for current_process
-    count_map = {i["id"]: 0 for i in grids}
-
-    # process given data
-    for position in local_data:
-        count_map = process_data(position, grids, count_map)
+    # else:
+    #     if comm_rank == 0:
+    #
+    #     else:
 
     # merge count_map
-    merged_count_map = comm.reduce(count_map, root=0, op=merge_dicts)
+    # merged_count_map = comm.reduce(count_map, root=0, op=merge_dicts)
 
     # output summary in root process
     if comm_rank == 0:
-        print(Counter(merged_count_map).most_common())
-        end = datetime.datetime.now()
+        grids_summary = sorted(grids_summary, key=lambda x: x.count, reverse=True)
+        pprint(grids_summary)
+        end = datetime.now()
         print(f"Programs runs", end - start)
 
 
