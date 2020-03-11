@@ -8,11 +8,11 @@ Description: class to contain grid information
 
 class Grid:
     def __init__(self, grid: dict):
-        self.id = grid["features"]["properties"]["id"]
-        self.xmin = grid["features"]["properties"]["xmin"]
-        self.xmax = grid["features"]["properties"]["xmax"]
-        self.ymin = grid["features"]["properties"]["ymin"]
-        self.ymax = grid["features"]["properties"]["ymax"]
+        self.id = grid["id"]
+        self.xmin = grid["xmin"]
+        self.xmax = grid["xmax"]
+        self.ymin = grid["ymin"]
+        self.ymax = grid["ymax"]
 
     def is_in_grid(self, x, y):
         if self.xmin <= x <= self.xmax and self.ymin <= y <= self.ymax:
