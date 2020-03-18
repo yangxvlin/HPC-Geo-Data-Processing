@@ -16,6 +16,20 @@ COMP90024 Cluster and Cloud Computing - Assignment 1 - 2020S1
   </tr>
 </table>
 
+## Repository Structure
+```
+| /data 
+      - project data
+  /docs 
+      - documentations
+  /src
+      - source codes
+  .all-contributorsrc 
+      - all contributers infomation
+   requirements.txt
+      - required python package
+```
+
 ## how to run
 1. ```pip install -r requirements.txt```
 2. run program on computer
