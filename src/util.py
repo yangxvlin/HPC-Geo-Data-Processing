@@ -43,20 +43,28 @@ def read_data_line_by_line(file_path: str):
 
 def top_n_hash_tags(language_summary_list: list, n=10):
     top_n_hash_tags_list = []
+    hash_tag_line_num_dict = {}
     for language_summary in language_summary_list:
-        top_n_hash_tags_list = heapq.nlargest(n, top_n_hash_tags_list + list(language_summary.hash_tag_counters.items()), key=lambda hash_tag_count: hash_tag_count[1])
-    return top_n_hash_tags_list
+        top_n_hash_tags_list = heapq.nlargest(n, top_n_hash_tags_list + list(language_summary.hash_tag_counters.items()), key=lambda x: x[1])
+
+        for tag in language_summary.hash_tag_counters:
+            if tag not in hash_tag_line_num_dict:
+                hash_tag_line_num_dict[tag] = []
+            hash_tag_line_num_dict[tag] += language_summary.hash_tag_line_num[tag]
+    return top_n_hash_tags_list, hash_tag_line_num_dict
 
 
 def dump_output(merged_language_summary_list: list):
-    top_n_hash_tags_list = top_n_hash_tags(merged_language_summary_list)
+    top_n_hash_tags_list, hash_tag_line_num_dict = top_n_hash_tags(merged_language_summary_list)
     print("=" * 5, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), "=" * 5)
     for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
         try:
-            print("{:2d}. {}, {:,}".format(i, hash_tag, hash_tag_count))
+            print("{:2d}. {}, {:,}".format(i, hash_tag, hash_tag_count), str(hash_tag_line_num_dict[hash_tag]))
         except UnicodeEncodeError:
             print("UnicodeEncodeError")
     print()
+
+    print("#theg", str(hash_tag_line_num_dict["#theg"]))
 
     # TODO need to test if some of top 10 language has 0 count?
     top_n_languages = heapq.nlargest(10, merged_language_summary_list, key=lambda x: x.count)

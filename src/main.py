@@ -45,10 +45,10 @@ def main(geo_data_path):
             if preprocessed_line:
                 twitter_data = TwitterData(preprocessed_line)
                 try:
-                    language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                    language_summary_dict[twitter_data.language_code].summarize(twitter_data, line_count)
                 except KeyError:
                     language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
-                    language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                    language_summary_dict[twitter_data.language_code].summarize(twitter_data, line_count)
                     # print("unknown language_code:", twitter_data.language_code)
 
         print("processor #{} processes {} lines.".format(comm_rank, line_count))

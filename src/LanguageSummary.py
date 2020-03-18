@@ -6,7 +6,7 @@ Description:
 """
 
 from TwitterData import TwitterData
-from collections import Counter
+from collections import Counter, defaultdict
 
 
 class LanguageSummary:
@@ -15,11 +15,16 @@ class LanguageSummary:
         self.name = name
         self.count = 0
         self.hash_tag_counters = Counter()
+        self.hash_tag_line_num = {}
 
-    def summarize(self, twitter_data: TwitterData):
+    def summarize(self, twitter_data: TwitterData, line_number):
         assert twitter_data.language_code == self.language_code
         self.count += 1
         self.hash_tag_counters += Counter(twitter_data.hash_tags)
+        for tag in twitter_data.hash_tags:
+            if tag not in self.hash_tag_line_num:
+                self.hash_tag_line_num[tag] = []
+            self.hash_tag_line_num[tag].append(line_number)
 
     def __repr__(self):
         return "{} ({}), {:,}".format(self.name, self.language_code, self.count)
