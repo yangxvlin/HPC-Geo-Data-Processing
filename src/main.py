@@ -6,7 +6,7 @@ Description:
 """
 
 from datetime import datetime
-import mpi4py.MPI as MPI
+from mpi4py import MPI
 import numpy as np
 import argparse
 from pprint import pprint
