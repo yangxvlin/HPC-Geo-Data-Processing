@@ -13,7 +13,7 @@ if [ "x$SLURM_JOB_ID" == "x" ]; then
 fi
 
 # Run the job from this directory:
-cd /home/$USER/COMP90024-2019SM1-Project1/
+cd /home/$USER/COMP90024/HPC-Geo-Data-Processing/slurm
 # The modules to load:
 module load MPICH/3.2.1-GCC-6.2.0
 module load Python/3.5.2-GCC-6.2.0
