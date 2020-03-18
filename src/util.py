@@ -59,3 +59,15 @@ def top_n_hash_tags(language_summary_list: list, n=10):
         top_n_hash_tags_list = heapq.nlargest(n, language_summary.hash_tag_counters.items(), key=lambda hash_tag_count: hash_tag_count[1])
     return top_n_hash_tags_list
 
+
+def dump_output(merged_language_summary_list: list):
+    top_n_hash_tags_list = top_n_hash_tags(merged_language_summary_list)
+    print("top {} most commonly used hashtags".format(len(top_n_hash_tags_list)))
+    for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
+        print("{}. {}, {:,}".format(i, hash_tag, hash_tag_count))
+    print()
+
+    top_n_languages = heapq.nlargest(10, merged_language_summary_list, key=lambda x: x.count)
+    print("top {} most commonly tweeted languages".format(len(top_n_languages)))
+    for i, language_summary in enumerate(top_n_languages, start=1):
+        print("{}. {}".format(i, language_summary))

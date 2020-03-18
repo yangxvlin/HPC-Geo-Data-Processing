@@ -12,7 +12,7 @@ import argparse
 from pprint import pprint
 from TwitterData import TwitterData
 from LanguageSummary import LanguageSummary
-from util import read_language_code, read_data_line_by_line, preprocess_data, top_n_hash_tags
+from util import read_language_code, read_data_line_by_line, preprocess_data, top_n_hash_tags, dump_output
 
 
 LANGUAGE_CODE_FILE = "./language.json"
@@ -87,11 +87,7 @@ def main(geo_data_path):
 
     # output summary in root process
     if comm_rank == 0:
-        merged_language_summary_list = sorted(reduced_language_summary_dict.values(), key=lambda x: x.count, reverse=True)
-        pprint(top_n_hash_tags(reduced_language_summary_dict.values()))
-
-        pprint(merged_language_summary_list[:10])
-        # pprint(merged_language_summary_list)
+        dump_output(reduced_language_summary_dict.values())
 
         end = datetime.now()
         print(f"Programs runs", end - start)
