@@ -98,7 +98,7 @@ def main(geo_data_path):
         dump_output(reduced_language_summary_dict.values())
 
         end = datetime.now()
-        print(f"Programs runs", end - start)
+        print("Programs runs", end - start)
 
 
 if __name__ == "__main__":
