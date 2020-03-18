@@ -19,4 +19,4 @@ module load MPICH/3.2.1-GCC-6.2.0
 module load Python/3.5.2-GCC-6.2.0
 
 # The job command(s):
-time mpirun python3 main.py -data ""../data/tinyTwitter.json"
+time mpirun python3 main.py -data "../../../../../data/projects/COMP90024/bigTwitter.json"
