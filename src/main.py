@@ -11,13 +11,15 @@ import numpy as np
 import argparse
 from pprint import pprint
 from TwitterData import TwitterData
-from util import read_grid_information, read_data_line_by_line, preprocess_data
-from GridSummary import GridSummary
+from Language import Language
+from util import read_language_code, read_data_line_by_line, preprocess_data
 
 
-def main(grid_data_path, geo_data_path):
+LANGUAGE_CODE_FILE = "./language.json"
+
+
+def main(geo_data_path):
     """
-    :param grid_data_path:
     :param geo_data_path:
     TODO optimize summarize(), i.e. do graph search in stead of looping over all grids
     """
@@ -28,19 +30,25 @@ def main(grid_data_path, geo_data_path):
     # print(comm_rank, comm_size)
 
     start = datetime.now()
-    grids_summary_dict = read_grid_information(grid_data_path)
+    language_dict = read_language_code(LANGUAGE_CODE_FILE)
     # TODO should read grid info in each process?
     # read_grid_info_end = datetime.now()
     # print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
 
     # only one process, no need to split data
     if comm_size == 1:
+        line_count = 0
         for line in read_data_line_by_line(geo_data_path):
             preprocessed_line = preprocess_data(line)
+            line_count += 1
             # the line is data
             if preprocessed_line:
                 twitter_data = TwitterData(preprocessed_line)
-                grids_summary_dict = {k: v.summarize(twitter_data) for k, v in grids_summary_dict.items()}
+                try:
+                    language_dict[twitter_data.language_code].increment(twitter_data)
+                except KeyError:
+                    print("unknown language_code:", twitter_data.language_code)
+        print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
     else:
         if comm_rank == 0:
@@ -60,7 +68,7 @@ def main(grid_data_path, geo_data_path):
 
             for i in range(1, comm_size):
                 comm.send(None, i)
-            print("process #{} send {} lines.".format(comm_rank, send_count))
+            print("processor #{} send {} lines.".format(comm_rank, send_count))
 
         else:
             recv_count = 0
@@ -71,16 +79,17 @@ def main(grid_data_path, geo_data_path):
 
                 recv_count += 1
                 twitter_data = TwitterData(local_preprocessed_line)
-                grids_summary_dict = {k: v.summarize(twitter_data) for k, v in grids_summary_dict.items()}
+                language_dict[twitter_data.language_code].increment(twitter_data)
 
-            print("process #{} recv {} lines.".format(comm_rank, recv_count))
+            print("processor #{} recv {} lines.".format(comm_rank, recv_count))
 
-    reduced_grids_summary_dict = comm.reduce(grids_summary_dict, root=0, op=GridSummary.merge_grid_summary_list)
+    reduced_language_dict = comm.reduce(language_dict, root=0, op=Language.merge_language_list)
 
     # output summary in root process
     if comm_rank == 0:
-        merged_grids_summary = sorted(reduced_grids_summary_dict.values(), key=lambda x: x.count, reverse=True)
-        pprint(merged_grids_summary)
+        merged_language_dict = sorted(reduced_language_dict.values(), key=lambda x: x.count, reverse=True)
+        # pprint(merged_language_dict[:10])
+        pprint(merged_language_dict)
 
         end = datetime.now()
         print(f"Programs runs", end - start)
@@ -89,13 +98,10 @@ def main(grid_data_path, geo_data_path):
 if __name__ == "__main__":
     # Instantiate the parser
     parser = argparse.ArgumentParser(description='python to process data')
-    # Required grid data path
-    parser.add_argument('-grid', type=str, help='A required string path to grid file')
     # Required geo data path
-    parser.add_argument('-data', type=str, help='A required string path to geo data file')
+    parser.add_argument('-data', type=str, help='A required string path to data file')
     args = parser.parse_args()
 
-    grid = args.grid
     data = args.data
 
-    main(grid, data)
+    main(data)

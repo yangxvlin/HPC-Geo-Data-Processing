@@ -11,4 +11,4 @@ import json
 class TwitterData:
     def __init__(self, data: str):
         json_data = json.loads(data)
-        self.location = json_data["json"]["geo"]["coordinates"]
+        self.language_code = json_data["doc"]["metadata"]["iso_language_code"]
