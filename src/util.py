@@ -23,18 +23,6 @@ def preprocess_data(data: str):
     return None
 
 
-# def read_grid_information(file_path: str):
-#     grids_summary_dict = {}
-#
-#     with open(file_path, encoding='utf-8') as file:
-#         json_data = json.load(file)
-#         for grid_info in json_data["features"]:
-#             grid = Grid(grid_info["properties"])
-#             grids_summary_dict[grid.id] = GridSummary(grid)
-#
-#     return grids_summary_dict
-
-
 def read_language_code(file_path: str):
     language_dict = {}
 
