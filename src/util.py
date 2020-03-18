@@ -19,7 +19,7 @@ def preprocess_data(data: str):
         return data[:-2]
     elif data.endswith('}\n'):
         return data[:-1]
-    print("invalid line:", data)
+    print("invalid line:", data, end="")
     return None
 
 

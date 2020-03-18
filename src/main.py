@@ -40,14 +40,15 @@ def main(geo_data_path):
         line_count = 0
         for line in read_data_line_by_line(geo_data_path):
             preprocessed_line = preprocess_data(line)
-            line_count += 1
             # the line is data
             if preprocessed_line:
+                line_count += 1
                 twitter_data = TwitterData(preprocessed_line)
                 try:
                     language_summary_dict[twitter_data.language_code].summarize(twitter_data)
                 except KeyError:
                     print("unknown language_code:", twitter_data.language_code)
+
         print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
     else:
@@ -79,7 +80,10 @@ def main(geo_data_path):
 
                 recv_count += 1
                 twitter_data = TwitterData(local_preprocessed_line)
-                language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                try:
+                    language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                except KeyError:
+                    print("unknown language_code:", twitter_data.language_code)
 
             print("processor #{} recv {} lines.".format(comm_rank, recv_count))
 
