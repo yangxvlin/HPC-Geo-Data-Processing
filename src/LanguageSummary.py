@@ -43,9 +43,12 @@ class LanguageSummary:
 
     @staticmethod
     def merge_language_list(x: dict, y: dict):
-        assert len(x) == len(y)
         res = x.copy()
 
-        for language_code in res:
-            res[language_code] += y[language_code]
+        for language_code in set(list(x.keys()) + list(y.keys())):
+            if language_code not in x:
+                res[language_code] = y[language_code]
+            else:
+                if language_code in y:
+                    res[language_code] += y[language_code]
         return res

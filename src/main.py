@@ -41,26 +41,28 @@ def main(geo_data_path):
         for line in read_data_line_by_line(geo_data_path):
             preprocessed_line = preprocess_data(line)
             # the line is data
+            line_count += 1
             if preprocessed_line:
-                line_count += 1
                 twitter_data = TwitterData(preprocessed_line)
                 try:
                     language_summary_dict[twitter_data.language_code].summarize(twitter_data)
                 except KeyError:
-                    print("unknown language_code:", twitter_data.language_code)
+                    language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
+                    language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                    # print("unknown language_code:", twitter_data.language_code)
 
         print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
     else:
         if comm_rank == 0:
             next_target = 1
-            send_count = 0
+            line_count = 0
 
             for line in read_data_line_by_line(geo_data_path):
                 preprocessed_line = preprocess_data(line)
                 # the line is data
+                line_count += 1
                 if preprocessed_line:
-                    send_count += 1
                     comm.send(preprocessed_line, next_target)
                     # scatter data line by line to slave process
                     next_target += 1
@@ -69,7 +71,7 @@ def main(geo_data_path):
 
             for i in range(1, comm_size):
                 comm.send(None, i)
-            print("processor #{} send {} lines.".format(comm_rank, send_count))
+            print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
         else:
             recv_count = 0
@@ -83,7 +85,9 @@ def main(geo_data_path):
                 try:
                     language_summary_dict[twitter_data.language_code].summarize(twitter_data)
                 except KeyError:
-                    print("unknown language_code:", twitter_data.language_code)
+                    language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
+                    language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+                    # print("unknown language_code:", twitter_data.language_code)
 
             print("processor #{} recv {} lines.".format(comm_rank, recv_count))
 
