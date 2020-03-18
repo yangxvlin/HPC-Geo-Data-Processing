@@ -50,13 +50,16 @@ def top_n_hash_tags(language_summary_list: list, n=10):
 
 def dump_output(merged_language_summary_list: list):
     top_n_hash_tags_list = top_n_hash_tags(merged_language_summary_list)
-    print("top {} most commonly used hashtags".format(len(top_n_hash_tags_list)))
+    print("=" * 5, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), "=" * 5)
     for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
-        print("{}. {}, {:,}".format(i, hash_tag, hash_tag_count))
+        try:
+            print("{:2d}. {}, {:,}".format(i, hash_tag, hash_tag_count))
+        except UnicodeEncodeError:
+            print("UnicodeEncodeError")
     print()
 
     # TODO need to test if some of top 10 language has 0 count?
     top_n_languages = heapq.nlargest(10, merged_language_summary_list, key=lambda x: x.count)
-    print("top {} most commonly tweeted languages".format(len(top_n_languages)))
+    print("=" * 5, "top {} most commonly tweeted languages".format(len(top_n_languages)), "=" * 5)
     for i, language_summary in enumerate(top_n_languages, start=1):
-        print("{}. {}".format(i, language_summary))
+        print("{:2d}. {}".format(i, language_summary))
