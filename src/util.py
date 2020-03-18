@@ -6,7 +6,7 @@ Description: some helper functions
 """
 
 import json
-from Language import Language
+from LanguageSummary import LanguageSummary
 
 
 def preprocess_data(data: str):
@@ -40,7 +40,7 @@ def read_language_code(file_path: str):
     with open(file_path, encoding='utf-8') as file:
         json_data = json.load(file)
         for language_code in json_data:
-            language = Language(language_code, json_data[language_code])
+            language = LanguageSummary(language_code, json_data[language_code])
             language_dict[language_code] = language
 
     return language_dict

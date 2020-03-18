@@ -11,7 +11,7 @@ import numpy as np
 import argparse
 from pprint import pprint
 from TwitterData import TwitterData
-from Language import Language
+from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data
 
 
@@ -45,7 +45,7 @@ def main(geo_data_path):
             if preprocessed_line:
                 twitter_data = TwitterData(preprocessed_line)
                 try:
-                    language_dict[twitter_data.language_code].increment(twitter_data)
+                    language_dict[twitter_data.language_code].summarize(twitter_data)
                 except KeyError:
                     print("unknown language_code:", twitter_data.language_code)
         print("processor #{} processes {} lines.".format(comm_rank, line_count))
@@ -79,17 +79,17 @@ def main(geo_data_path):
 
                 recv_count += 1
                 twitter_data = TwitterData(local_preprocessed_line)
-                language_dict[twitter_data.language_code].increment(twitter_data)
+                language_dict[twitter_data.language_code].summarize(twitter_data)
 
             print("processor #{} recv {} lines.".format(comm_rank, recv_count))
 
-    reduced_language_dict = comm.reduce(language_dict, root=0, op=Language.merge_language_list)
+    reduced_language_dict = comm.reduce(language_dict, root=0, op=LanguageSummary.merge_language_list)
 
     # output summary in root process
     if comm_rank == 0:
         merged_language_dict = sorted(reduced_language_dict.values(), key=lambda x: x.count, reverse=True)
-        # pprint(merged_language_dict[:10])
-        pprint(merged_language_dict)
+        pprint(merged_language_dict[:10])
+        # pprint(merged_language_dict)
 
         end = datetime.now()
         print(f"Programs runs", end - start)
