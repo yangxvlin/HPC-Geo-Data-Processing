@@ -15,13 +15,13 @@ from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, top_n_hash_tags, dump_output
 
 
+# TODO can I hard code this?
 LANGUAGE_CODE_FILE = "./language.json"
 
 
 def main(geo_data_path):
     """
     :param geo_data_path:
-    TODO optimize summarize(), i.e. do graph search in stead of looping over all grids
     """
     # initialize communicator
     comm = MPI.COMM_WORLD
@@ -31,7 +31,7 @@ def main(geo_data_path):
 
     start = datetime.now()
     language_summary_dict = read_language_code(LANGUAGE_CODE_FILE)
-    # TODO should read grid info in each process?
+    # TODO should language info in each process?
     # read_grid_info_end = datetime.now()
     # print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
 

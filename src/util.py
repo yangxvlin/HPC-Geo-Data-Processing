@@ -67,6 +67,7 @@ def dump_output(merged_language_summary_list: list):
         print("{}. {}, {:,}".format(i, hash_tag, hash_tag_count))
     print()
 
+    # TODO need to test if some of top 10 language has 0 count?
     top_n_languages = heapq.nlargest(10, merged_language_summary_list, key=lambda x: x.count)
     print("top {} most commonly tweeted languages".format(len(top_n_languages)))
     for i, language_summary in enumerate(top_n_languages, start=1):
