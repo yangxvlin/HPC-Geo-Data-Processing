@@ -15,13 +15,10 @@ from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, top_n_hash_tags, dump_output
 
 
-# TODO can I hard code this?
-LANGUAGE_CODE_FILE = "./language.json"
-
-
-def main(geo_data_path):
+def main(country_code_file_path, twitter_data_path):
     """
-    :param geo_data_path:
+    :param country_code_file_path:
+    :param twitter_data_path:
     """
     # initialize communicator
     comm = MPI.COMM_WORLD
@@ -30,7 +27,7 @@ def main(geo_data_path):
     # print(comm_rank, comm_size)
 
     start = datetime.now()
-    language_summary_dict = read_language_code(LANGUAGE_CODE_FILE)
+    language_summary_dict = read_language_code(country_code_file_path)
     # TODO should language info in each process?
     # read_grid_info_end = datetime.now()
     # print("process #{} takes {} to read grid info.".format(comm_rank, read_grid_info_end - start))
@@ -38,7 +35,7 @@ def main(geo_data_path):
     # only one process, no need to split data
     if comm_size == 1:
         line_count = 0
-        for line in read_data_line_by_line(geo_data_path):
+        for line in read_data_line_by_line(twitter_data_path):
             preprocessed_line = preprocess_data(line)
             # the line is data
             line_count += 1
@@ -58,7 +55,7 @@ def main(geo_data_path):
             next_target = 1
             line_count = 0
 
-            for line in read_data_line_by_line(geo_data_path):
+            for line in read_data_line_by_line(twitter_data_path):
                 preprocessed_line = preprocess_data(line)
                 # the line is data
                 line_count += 1
@@ -104,10 +101,13 @@ def main(geo_data_path):
 if __name__ == "__main__":
     # Instantiate the parser
     parser = argparse.ArgumentParser(description='python to process data')
+    # Required country code file
+    parser.add_argument('-country', type=str, help='A required string path to country code file')
     # Required geo data path
     parser.add_argument('-data', type=str, help='A required string path to data file')
     args = parser.parse_args()
 
+    country = args.country
     data = args.data
 
-    main(data)
+    main(country, data)
