@@ -14,4 +14,4 @@ class TwitterData:
         json_data = json.loads(data)
         self.language_code = json_data["doc"]["metadata"]["iso_language_code"]
         # TODO is my regex correct?
-        self.hash_tags = tuple(map(lambda x: x.lower(), re.findall("\B#\w+", json_data["doc"]["text"])))
+        self.hash_tags = tuple(map(lambda x: x.lower(), re.findall("#[a-zA-Z0-9]+", json_data["doc"]["text"])))
