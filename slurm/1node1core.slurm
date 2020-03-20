@@ -6,16 +6,10 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=1-0:0:00
 
-# check that the script is launched with sbatch
-if [ "x$SLURM_JOB_ID" == "x" ]; then
-   echo "You need to submit your job to the queuing system with sbatch"
-   exit 1
-fi
-
 # Run the job from this directory:
 cd /home/$USER/COMP90024/HPC-Geo-Data-Processing/slurm
 # The modules to load:
 module load Python/3.6.1-intel-2017.u2
 
 # The job command(s):
-time mpirun python3 "../src/main.py" -country "../src/language.json" -data "../data/smallTwitter.json"
+time mpirun python3 "../src/main.py" -country "../src/language.json" -data "../data/bigTwitter.json"
