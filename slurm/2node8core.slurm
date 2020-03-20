@@ -5,7 +5,7 @@
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=1
-#SBATCH --mail-user=xuliny@student.unimelb.edu.au
+##SBATCH --mail-user=xuliny@student.unimelb.edu.au
 #SBATCH --mail-type=End
 #SBATCH --time=1-0:0:00
 
