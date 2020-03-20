@@ -11,6 +11,13 @@ from collections import Counter
 from LanguageSummary import LanguageSummary
 import heapq
 
+from TwitterData import TwitterData
+
+SEPARATOR = "=" * 5
+
+
+TIME_FORMAT = "%H:%M:%S.%f"
+
 
 def preprocess_data(data: str):
     """
@@ -24,6 +31,19 @@ def preprocess_data(data: str):
             return data[:-1]
     print("invalid line:", data, end="")
     return None
+
+
+def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dict):
+    twitter_data = TwitterData(preprocessed_line)
+
+    for hash_tag in twitter_data.hash_tags:
+        hash_tag_count[hash_tag] += 1
+
+    try:
+        language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+    except KeyError:
+        language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
+        language_summary_dict[twitter_data.language_code].summarize(twitter_data)
 
 
 def read_language_code(file_path: str):
@@ -51,12 +71,13 @@ def dump_hash_tag_output(hash_tag_count: Counter, n=10):
         _, nth_hash_tag_count = top_n_hash_tags_list[-1]
         top_n_hash_tags_list = sorted(list(filter(lambda x: x[1] >= nth_hash_tag_count, hash_tag_count_list)), key=lambda x: x[1], reverse=True)
 
-    print("=" * 5, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), "=" * 5)
+    print(SEPARATOR, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), SEPARATOR)
     for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
         try:
             print("{:2d}. {: <25}, {:,}".format(i, hash_tag, hash_tag_count))
         except UnicodeEncodeError:
             print("UnicodeEncodeError")
+    print()
 
 
 def dump_country_code_output(merged_language_summary_list: list, n=10):
@@ -65,8 +86,13 @@ def dump_country_code_output(merged_language_summary_list: list, n=10):
     if top_n_languages:
         nth_language_count = top_n_languages[-1].count
         top_n_languages = sorted(list(filter(lambda x: x.count >= nth_language_count, non_zero_merged_language_summary_list)), key=lambda x: x.count, reverse=True)
-    print("=" * 5, "top {} most commonly tweeted languages".format(len(top_n_languages)), "=" * 5)
+    print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
     for i, language_summary in enumerate(top_n_languages, start=1):
         print("{:2d}. {}".format(i, language_summary))
-
+    print()
     # print(sorted(non_zero_merged_language_summary_list, key=lambda x: x.count, reverse=True))
+
+
+def dump_time(comm_rank, title, time_period):
+    print(SEPARATOR, "processor #{} does {} for {}(micro s)".format(comm_rank, title, time_period.microseconds), SEPARATOR)
+    print()
