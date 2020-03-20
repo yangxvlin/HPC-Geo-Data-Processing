@@ -51,7 +51,7 @@ def main(country_code_file_path, twitter_data_path):
         dump_country_code_output(reduced_language_summary_dict.values())
 
         end = datetime.now()
-        dump_time(comm_rank, "dumping output", dumping_time_start - end)
+        dump_time(comm_rank, "dumping output", end - dumping_time_start)
         program_run_time = end - start
         print("Programs runs {}(micro s)".format(program_run_time.microseconds))
 
