@@ -6,7 +6,6 @@ Description:
 """
 
 from TwitterData import TwitterData
-from collections import Counter
 
 
 class LanguageSummary:
@@ -14,15 +13,13 @@ class LanguageSummary:
         self.language_code = language_code
         self.name = name
         self.count = 0
-        self.hash_tag_counters = Counter()
 
     def summarize(self, twitter_data: TwitterData):
         assert twitter_data.language_code == self.language_code
         self.count += 1
-        self.hash_tag_counters += Counter(twitter_data.hash_tags)
 
     def __repr__(self):
-        return "{} ({}), {:,}".format(self.name, self.language_code, self.count)
+        return "{: <10} ({: >3}), {:,}".format(self.name, self.language_code, self.count)
 
     def __cmp__(self, other):
         if self.count > other.count:
@@ -35,7 +32,6 @@ class LanguageSummary:
     def __add__(self, other):
         assert self.language_code == other.language_code
         self.count += other.count
-        self.hash_tag_counters += other.hash_tag_counters
         return self
 
     def __hash__(self):
