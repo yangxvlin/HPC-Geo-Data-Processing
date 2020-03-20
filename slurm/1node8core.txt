@@ -1,0 +1,71 @@
+===== processor #1 does reading country code file for 1265(micro s) =====
+
+===== processor #1 does processing for 328909(micro s) =====
+
+processor #1 recv 579647 lines.
+===== processor #2 does reading country code file for 1100(micro s) =====
+
+===== processor #2 does processing for 328876(micro s) =====
+
+processor #2 recv 579646 lines.
+===== processor #3 does reading country code file for 1068(micro s) =====
+
+===== processor #3 does processing for 328886(micro s) =====
+
+processor #3 recv 579646 lines.
+===== processor #5 does reading country code file for 1287(micro s) =====
+
+===== processor #5 does processing for 328974(micro s) =====
+
+processor #5 recv 579646 lines.
+===== processor #6 does reading country code file for 1070(micro s) =====
+
+===== processor #6 does processing for 328887(micro s) =====
+
+processor #6 recv 579646 lines.
+===== processor #7 does reading country code file for 1067(micro s) =====
+
+===== processor #7 does processing for 328875(micro s) =====
+
+processor #7 recv 579646 lines.
+===== processor #4 does reading country code file for 1060(micro s) =====
+
+===== processor #4 does processing for 328901(micro s) =====
+
+processor #4 recv 579646 lines.
+===== processor #0 does reading country code file for 1386(micro s) =====
+
+invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
+invalid line: ]}
+processor #0 processes 4057525 lines.
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 15,361
+ 2. #coronavirus             , 9,361
+ 3. #มาพ่องเพิ่งอะไร         , 7,524
+ 4. #oldme                   , 6,415
+ 5. #grammys                 , 5,003
+ 6. #firefightaustralia      , 4,826
+ 7. #scottyfrommarketing     , 4,752
+ 8. #sydney                  , 4,746
+ 9. #assange                 , 4,642
+10. #sportsrorts             , 4,283
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. unknown    ( tl), 44,560
+ 8. unknown    ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 35415(micro s) =====
+
+Programs runs 683134(micro s)
+
+real	3m12.485s
+user	0m0.025s
+sys	0m0.058s
