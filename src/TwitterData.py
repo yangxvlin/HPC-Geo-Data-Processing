@@ -21,4 +21,5 @@ class TwitterData:
         self.language_code = json_data["doc"]["metadata"]["iso_language_code"]
         # 1. search hashtag starts with '#' followed by alphabet or numbers and end with a white space or a punctuation
         # 2. turn it to lower case
-        self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[a-zA-Z0-9]+[\s{}]".format(punctuation), json_data["doc"]["text"])))
+        self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[^\s{}]+[\s{}]".format(punctuation, punctuation), json_data["doc"]["text"])))
+        # self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[a-zA-Z00-9]+[\s{}]".format(punctuation), json_data["doc"]["text"])))
