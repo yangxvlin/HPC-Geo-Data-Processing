@@ -39,3 +39,10 @@ mpiexec -n numprocs python -m mpi4py pyfile
 mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/testTwitter.json
 mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/smallTwitter.json
 ```
+3. run task on spartan
+```
+cd slurm
+sbatch 1node1core.slurm > 1node1core.out
+sbatch 1node8core.slurm > 1node8core.out
+sbatch 2node8core.slurm > 2node8core.out
+```
