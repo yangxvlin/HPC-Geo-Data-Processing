@@ -15,8 +15,7 @@ fi
 # Run the job from this directory:
 cd /home/$USER/COMP90024/HPC-Geo-Data-Processing/slurm
 # The modules to load:
-module load MPICH/3.2.1-GCC-6.2.0
-module load Python/3.5.2-GCC-6.2.0
+module load Python/3.6.1-intel-2017.u2
 
 # The job command(s):
-time mpirun python3 "../src/main.py" -data "../../../../../data/projects/COMP90024/bigTwitter.json"
+time mpirun python3 "../src/main.py" -data "../data/projects/COMP90024/smallTwitter.json"
