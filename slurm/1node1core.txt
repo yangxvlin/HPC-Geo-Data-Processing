@@ -1,0 +1,36 @@
+===== processor #0 does reading country code file for 864(micro s) =====
+
+invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
+invalid line: ]}
+processor #0 processes 4057525 lines.
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 15,361
+ 2. #coronavirus             , 9,361
+ 3. #มาพ่องเพิ่งอะไร         , 7,524
+ 4. #oldme                   , 6,415
+ 5. #grammys                 , 5,003
+ 6. #firefightaustralia      , 4,826
+ 7. #scottyfrommarketing     , 4,752
+ 8. #sydney                  , 4,746
+ 9. #assange                 , 4,642
+10. #sportsrorts             , 4,283
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. unknown    ( tl), 44,560
+ 8. unknown    ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 54659(micro s) =====
+
+Programs runs 864495(micro s)
+
+real	9m20.588s
+user	0m0.045s
+sys	0m0.069s
