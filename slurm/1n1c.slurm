@@ -18,4 +18,4 @@ cd /home/$USER/COMP90024/HPC-Geo-Data-Processing/slurm
 module load Python/3.6.1-intel-2017.u2
 
 # The job command(s):
-time mpirun python3 "../src/main.py" -data "../data/projects/COMP90024/smallTwitter.json"
+time mpirun python3 "../src/main.py" -country "../src/language.json" -data "../data/projects/COMP90024/smallTwitter.json"
