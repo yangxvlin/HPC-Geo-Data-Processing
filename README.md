@@ -34,6 +34,7 @@ COMP90024 Cluster and Cloud Computing - Assignment 1 - 2020S1
 1. ```pip install -r requirements.txt```
 2. run program on computer
 ```
+cd src
 mpiexec -n numprocs python -m mpi4py pyfile
 mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/testTwitter.json
 mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/smallTwitter.json
