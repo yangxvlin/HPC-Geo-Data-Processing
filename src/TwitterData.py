@@ -26,15 +26,16 @@ class TwitterData:
         # 2. turn it to lower case
         # self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[^\s{}]+[\s{}]".format(punctuation, punctuation), json_data["doc"]["text"])))
         # self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[a-zA-Z0-9]+[\s{}]".format(punctuation), json_data["doc"]["text"])))
+        self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[^\s:punct:]+[\s:punct:]", json_data["doc"]["text"])))
 
-        self.hash_tags = []
-        hash_tag_string = json_data["doc"]["text"].split('#')
-        for tag in hash_tag_string[1:]:
-            string = ""
-            for character in tag:
-                if character not in STOP_SIGN:
-                    string += character
-                else:
-                    break
-            if len(string) > 0:
-                self.hash_tags.append("#" + string.lower())
+        # self.hash_tags = []
+        # hash_tag_string = json_data["doc"]["text"].split('#')
+        # for tag in hash_tag_string[1:]:
+        #     string = ""
+        #     for character in tag:
+        #         if character not in STOP_SIGN:
+        #             string += character
+        #         else:
+        #             break
+        #     if len(string) > 0:
+        #         self.hash_tags.append("#" + string.lower())
