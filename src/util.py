@@ -44,6 +44,7 @@ def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dic
     except KeyError:
         language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
         language_summary_dict[twitter_data.language_code].summarize(twitter_data)
+        print("unknown country code", twitter_data.language_code)
 
 
 def read_language_code(file_path: str):
