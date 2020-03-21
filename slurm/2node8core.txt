@@ -1,54 +1,68 @@
-===== processor #1 does reading country code file for 988(micro s) =====
+===== processor #1 does reading country code file for 758(micro s) =====
 
-===== processor #1 does processing for 292796(micro s) =====
+unknown country code ca
+unknown country code eu
+===== processor #1 does processing for 911597(micro s) =====
 
 processor #1 recv 579647 lines.
-===== processor #4 does reading country code file for 1069(micro s) =====
+===== processor #3 does reading country code file for 1180(micro s) =====
 
-===== processor #4 does processing for 302467(micro s) =====
-
-processor #4 recv 579646 lines.
-===== processor #2 does reading country code file for 2071(micro s) =====
-
-===== processor #2 does processing for 296097(micro s) =====
-
-processor #2 recv 579646 lines.
-===== processor #5 does reading country code file for 1332(micro s) =====
-
-===== processor #5 does processing for 292958(micro s) =====
-
-processor #5 recv 579646 lines.
-===== processor #3 does reading country code file for 467(micro s) =====
-
-===== processor #3 does processing for 289407(micro s) =====
+unknown country code ca
+unknown country code eu
+===== processor #3 does processing for 913082(micro s) =====
 
 processor #3 recv 579646 lines.
-===== processor #6 does reading country code file for 304(micro s) =====
+===== processor #4 does reading country code file for 459(micro s) =====
 
-===== processor #6 does processing for 302390(micro s) =====
+unknown country code ca
+unknown country code eu
+===== processor #4 does processing for 911225(micro s) =====
+
+processor #4 recv 579646 lines.
+===== processor #2 does reading country code file for 501(micro s) =====
+
+unknown country code eu
+unknown country code ca
+===== processor #2 does processing for 910814(micro s) =====
+
+processor #2 recv 579646 lines.
+===== processor #5 does reading country code file for 1173(micro s) =====
+
+unknown country code eu
+unknown country code ca
+===== processor #5 does processing for 911245(micro s) =====
+
+processor #5 recv 579646 lines.
+===== processor #6 does reading country code file for 717(micro s) =====
+
+unknown country code eu
+unknown country code ca
+===== processor #6 does processing for 909123(micro s) =====
 
 processor #6 recv 579646 lines.
-===== processor #7 does reading country code file for 411(micro s) =====
+===== processor #7 does reading country code file for 1193(micro s) =====
 
-===== processor #7 does processing for 290804(micro s) =====
+unknown country code ca
+unknown country code eu
+===== processor #7 does processing for 911231(micro s) =====
 
 processor #7 recv 579646 lines.
-===== processor #0 does reading country code file for 1081(micro s) =====
+===== processor #0 does reading country code file for 1272(micro s) =====
 
 invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
 invalid line: ]}
 processor #0 processes 4057525 lines.
 ===== top 10 most commonly used hashtags =====
- 1. #auspol                  , 19,290
- 2. #coronavirus             , 9,886
+ 1. #auspol                  , 19,878
+ 2. #coronavirus             , 10,110
  3. #มาพ่องเพิ่งอะไร         , 7,531
- 4. #firefightaustralia      , 6,777
- 5. #oldme                   , 6,419
- 6. #sydney                  , 6,013
- 7. #grammys                 , 5,083
- 8. #scottyfrommarketing     , 4,978
- 9. #assange                 , 4,674
-10. #sportsrorts             , 4,445
+ 4. #firefightaustralia      , 6,812
+ 5. #oldme                   , 6,418
+ 6. #sydney                  , 6,196
+ 7. #scottyfrommarketing     , 5,185
+ 8. #grammys                 , 5,085
+ 9. #assange                 , 4,689
+10. #sportsrorts             , 4,516
 
 ===== top 10 most commonly tweeted languages =====
  1. English    ( en), 3,107,116
@@ -57,15 +71,15 @@ processor #0 processes 4057525 lines.
  4. Portuguese ( pt), 125,858
  5. Spanish    ( es), 74,028
  6. Japanese   ( ja), 49,929
- 7. unknown    ( tl), 44,560
- 8. unknown    ( in), 42,296
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 59525(micro s) =====
+===== processor #0 does dumping output for 49126(micro s) =====
 
-Programs runs 924972(micro s)
+Programs runs 446917(micro s)
 
-real	3m26.889s
-user	0m0.030s
-sys	0m0.072s
+real	3m57.097s
+user	0m0.032s
+sys	0m0.063s
