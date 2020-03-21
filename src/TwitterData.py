@@ -29,7 +29,7 @@ class TwitterData:
         #   use provided entities -> hashtags
         #
         # either method is accepted by:
-        #   https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/160043
+        #   https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/160043 -> suggests hashtag should contain foreign characters
         #       -> https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/154594
         # method b is used at here
 
