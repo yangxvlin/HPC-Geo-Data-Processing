@@ -6,7 +6,6 @@ Description: class for twitter data
 """
 
 import json
-import re
 from string import punctuation, whitespace
 
 
