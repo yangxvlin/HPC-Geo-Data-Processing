@@ -22,20 +22,15 @@ class TwitterData:
         """
         json_data = json.loads(data)
         self.language_code = json_data["doc"]["metadata"]["iso_language_code"]
-        # 1. search hashtag starts with '#' followed by alphabet or numbers and end with a white space or a punctuation
-        # 2. turn it to lower case
-        # self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[^\s{}]+[\s{}]".format(punctuation, punctuation), json_data["doc"]["text"])))
-        # self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[a-zA-Z0-9]+[\s{}]".format(punctuation), json_data["doc"]["text"])))
-        self.hash_tags = tuple(map(lambda x: x[:-1].lower(), re.findall("#[^\s:punct:]+[\s:punct:]", json_data["doc"]["text"])))
+        # method a)
+        #   1. search hashtag starts with '#' followed by alphabet or numbers and end with a white space or a punctuation
+        #   2. turn it to lower case
+        # method b)
+        #   use provided entities -> hashtags
+        #
+        # either method is accepted by:
+        #   https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/160043
+        #       -> https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/154594
+        # method b is used at here
 
-        # self.hash_tags = []
-        # hash_tag_string = json_data["doc"]["text"].split('#')
-        # for tag in hash_tag_string[1:]:
-        #     string = ""
-        #     for character in tag:
-        #         if character not in STOP_SIGN:
-        #             string += character
-        #         else:
-        #             break
-        #     if len(string) > 0:
-        #         self.hash_tags.append("#" + string.lower())
+        self.hash_tags = tuple(map(lambda x: '#' + x["text"].lower(), json_data["doc"]["entities"]["hashtags"]))
