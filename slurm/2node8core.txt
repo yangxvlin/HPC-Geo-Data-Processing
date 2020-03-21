@@ -1,54 +1,54 @@
-===== processor #1 does reading country code file for 1279(micro s) =====
+===== processor #1 does reading country code file for 988(micro s) =====
 
-===== processor #1 does processing for 36094(micro s) =====
+===== processor #1 does processing for 292796(micro s) =====
 
 processor #1 recv 579647 lines.
-===== processor #4 does reading country code file for 447(micro s) =====
+===== processor #4 does reading country code file for 1069(micro s) =====
 
-===== processor #4 does processing for 39206(micro s) =====
+===== processor #4 does processing for 302467(micro s) =====
 
 processor #4 recv 579646 lines.
-===== processor #2 does reading country code file for 1117(micro s) =====
+===== processor #2 does reading country code file for 2071(micro s) =====
 
-===== processor #2 does processing for 36109(micro s) =====
+===== processor #2 does processing for 296097(micro s) =====
 
 processor #2 recv 579646 lines.
-===== processor #5 does reading country code file for 398(micro s) =====
+===== processor #5 does reading country code file for 1332(micro s) =====
 
-===== processor #5 does processing for 39058(micro s) =====
+===== processor #5 does processing for 292958(micro s) =====
 
 processor #5 recv 579646 lines.
-===== processor #3 does reading country code file for 1273(micro s) =====
+===== processor #3 does reading country code file for 467(micro s) =====
 
-===== processor #3 does processing for 36095(micro s) =====
+===== processor #3 does processing for 289407(micro s) =====
 
 processor #3 recv 579646 lines.
-===== processor #6 does reading country code file for 369(micro s) =====
+===== processor #6 does reading country code file for 304(micro s) =====
 
-===== processor #6 does processing for 37887(micro s) =====
+===== processor #6 does processing for 302390(micro s) =====
 
 processor #6 recv 579646 lines.
-===== processor #7 does reading country code file for 319(micro s) =====
+===== processor #7 does reading country code file for 411(micro s) =====
 
-===== processor #7 does processing for 39340(micro s) =====
+===== processor #7 does processing for 290804(micro s) =====
 
 processor #7 recv 579646 lines.
-===== processor #0 does reading country code file for 545(micro s) =====
+===== processor #0 does reading country code file for 1081(micro s) =====
 
 invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
 invalid line: ]}
 processor #0 processes 4057525 lines.
 ===== top 10 most commonly used hashtags =====
- 1. #auspol                  , 15,361
- 2. #coronavirus             , 9,361
- 3. #มาพ่องเพิ่งอะไร         , 7,524
- 4. #oldme                   , 6,415
- 5. #grammys                 , 5,003
- 6. #firefightaustralia      , 4,826
- 7. #scottyfrommarketing     , 4,752
- 8. #sydney                  , 4,746
- 9. #assange                 , 4,642
-10. #sportsrorts             , 4,283
+ 1. #auspol                  , 19,290
+ 2. #coronavirus             , 9,886
+ 3. #มาพ่องเพิ่งอะไร         , 7,531
+ 4. #firefightaustralia      , 6,777
+ 5. #oldme                   , 6,419
+ 6. #sydney                  , 6,013
+ 7. #grammys                 , 5,083
+ 8. #scottyfrommarketing     , 4,978
+ 9. #assange                 , 4,674
+10. #sportsrorts             , 4,445
 
 ===== top 10 most commonly tweeted languages =====
  1. English    ( en), 3,107,116
@@ -62,10 +62,10 @@ processor #0 processes 4057525 lines.
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 44750(micro s) =====
+===== processor #0 does dumping output for 59525(micro s) =====
 
-Programs runs 527069(micro s)
+Programs runs 924972(micro s)
 
-real	3m29.442s
-user	0m0.028s
-sys	0m0.064s
+real	3m26.889s
+user	0m0.030s
+sys	0m0.072s
