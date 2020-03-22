@@ -13,15 +13,14 @@ import heapq
 
 from TwitterData import TwitterData
 
+
+""" separator used for pretty printing """
 SEPARATOR = "=" * 5
-
-
-TIME_FORMAT = "%H:%M:%S.%f"
 
 
 def preprocess_data(data: str):
     """
-    :param data:
+    :param data: raw string data
     :return: data with end ',' truncated otherwise return None
     """
     if data.startswith('{'):
@@ -34,6 +33,11 @@ def preprocess_data(data: str):
 
 
 def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dict):
+    """
+    :param preprocessed_line: raw data after pre-processing
+    :param hash_tag_count: {hash_tag, int} object
+    :param language_summary_dict: {country_code: LanguageSummary} object
+    """
     twitter_data = TwitterData(preprocessed_line)
 
     for hash_tag in twitter_data.hash_tags:
@@ -48,6 +52,10 @@ def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dic
 
 
 def read_language_code(file_path: str):
+    """
+    :param file_path: country code file path
+    :return: {country_code: LanguageSummary} object
+    """
     language_dict = {}
 
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -60,12 +68,20 @@ def read_language_code(file_path: str):
 
 
 def read_data_line_by_line(file_path: str):
+    """
+    lazy line by line reader
+    :param file_path: twitter data file path
+    """
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:
             yield line
 
 
 def dump_hash_tag_output(hash_tag_count: Counter, n=10):
+    """
+    :param hash_tag_count: {hash_tag, int} object
+    :param n: default number of top summary to be displayed
+    """
     hash_tag_count_list = list(hash_tag_count.items())
     top_n_hash_tags_list = heapq.nlargest(n, hash_tag_count_list, key=lambda x: x[1])
     if top_n_hash_tags_list:
@@ -82,6 +98,10 @@ def dump_hash_tag_output(hash_tag_count: Counter, n=10):
 
 
 def dump_country_code_output(merged_language_summary_list: list, n=10):
+    """
+    :param merged_language_summary_list: [LanguageSummary] object
+    :param n: default number of top summary to be displayed
+    """
     non_zero_merged_language_summary_list = list(filter(lambda x: x.count > 0, merged_language_summary_list))
     top_n_languages = heapq.nlargest(n, non_zero_merged_language_summary_list, key=lambda x: x.count)
     if top_n_languages:
@@ -91,9 +111,13 @@ def dump_country_code_output(merged_language_summary_list: list, n=10):
     for i, language_summary in enumerate(top_n_languages, start=1):
         print("{:2d}. {}".format(i, language_summary))
     print()
-    # print(sorted(non_zero_merged_language_summary_list, key=lambda x: x.count, reverse=True))
 
 
 def dump_time(comm_rank, title, time_period):
+    """
+    :param comm_rank: the rank of processor
+    :param title: the content of printing
+    :param time_period: the period of time to be displayed
+    """
     print(SEPARATOR, "processor #{} does {} for {}(micro s)".format(comm_rank, title, time_period.microseconds), SEPARATOR)
     print()

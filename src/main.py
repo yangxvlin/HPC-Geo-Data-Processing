@@ -2,7 +2,7 @@
 Author:      XuLin Yang
 Student id:  904904
 Date:        2020-3-10 15:28:34
-Description: 
+Description: main function
 """
 import operator
 from datetime import datetime
@@ -15,32 +15,39 @@ from util import read_language_code, read_data_line_by_line, preprocess_data, du
 
 def main(country_code_file_path, twitter_data_path):
     """
-    :param country_code_file_path:
-    :param twitter_data_path:
+    :param country_code_file_path: the path of country_code_file
+    :param twitter_data_path: the path of twitter_data
     """
     # initialize communicator
     comm = MPI.COMM_WORLD
     comm_rank = comm.Get_rank()
     comm_size = comm.Get_size()
 
+    # the starting timestamp
     start = datetime.now()
+
+    # read country_code info
     language_summary_dict = read_language_code(country_code_file_path)
     # TODO should language info in each process?
     dump_time(comm_rank, "reading country code file", datetime.now() - start)
 
+    # counting hash_tag
     hash_tag_count = Counter()
 
-    # only one process, no need to split data
+    # only one processor, no need to split data
     if comm_size == 1:
         single_node_single_core_task(twitter_data_path, hash_tag_count, language_summary_dict, comm_rank)
 
+    # multi processor
     else:
+        # master processor split data to slave processors
         if comm_rank == 0:
             multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_rank)
-
+        # slave processors receive data from master processor and summarize hash_tag and language
         else:
             multi_core_slave_processor_task(comm, hash_tag_count, language_summary_dict, comm_rank)
 
+    # reduce LanguageSummary, hash_tag_count from slave processors to master processor
     reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
     reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
@@ -57,6 +64,12 @@ def main(country_code_file_path, twitter_data_path):
 
 
 def single_node_single_core_task(twitter_data_path, hash_tag_count, language_summary_dict, comm_rank):
+    """
+    :param twitter_data_path: the path of twitter_data
+    :param hash_tag_count: Counter({hash_tag: int}) object
+    :param language_summary_dict: {country_cde: LanguageSummary} object
+    :param comm_rank: the rank of the current processor
+    """
     line_count = 0
     for line in read_data_line_by_line(twitter_data_path):
         preprocessed_line = preprocess_data(line)
@@ -69,6 +82,12 @@ def single_node_single_core_task(twitter_data_path, hash_tag_count, language_sum
 
 
 def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_rank):
+    """
+    :param twitter_data_path: the path of twitter_data
+    :param comm_size: number of working processors
+    :param comm: communicator object
+    :param comm_rank: the rank of the current processor
+    """
     next_target = 1
     line_count = 0
 
@@ -83,17 +102,25 @@ def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_ra
             if next_target == comm_size:
                 next_target = 1
 
+    # send None to slave processors to stop receiving
     for i in range(1, comm_size):
         comm.send(None, i)
     print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
 
 def multi_core_slave_processor_task(comm, hash_tag_count, language_summary_dict, comm_rank):
+    """
+    :param comm: communicator object
+    :param hash_tag_count: Counter({hash_tag: int}) object
+    :param language_summary_dict: {country_cde: LanguageSummary} object
+    :param comm_rank: the rank of the current processor
+    """
     processing_time_start = datetime.now()
     recv_count = 0
 
     while True:
         local_preprocessed_line = comm.recv(source=0)
+        # master processor has sent all data
         if not local_preprocessed_line:
             break
         recv_count += 1

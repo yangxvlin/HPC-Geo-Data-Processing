@@ -2,7 +2,7 @@
 Author:      XuLin Yang
 Student id:  904904
 Date:        2020-3-18 18:49:24
-Description: 
+Description: class for gathering language summary
 """
 
 from TwitterData import TwitterData
@@ -10,11 +10,18 @@ from TwitterData import TwitterData
 
 class LanguageSummary:
     def __init__(self, language_code: str, name: str):
+        """
+        :param language_code: language_code
+        :param name: language's name
+        """
         self.language_code = language_code
         self.name = name
         self.count = 0
 
     def summarize(self, twitter_data: TwitterData):
+        """
+        :param twitter_data: TwitterData object to be summarized
+        """
         assert twitter_data.language_code == self.language_code
         self.count += 1
 
@@ -39,8 +46,14 @@ class LanguageSummary:
 
     @staticmethod
     def merge_language_list(x: dict, y: dict):
+        """
+        :param x: {country_code: LanguageSummary} object
+        :param y: {country_code: LanguageSummary} object
+        :return: merged dict of x and y
+        """
         res = x.copy()
 
+        # x and y may have different keys
         for language_code in set(list(x.keys()) + list(y.keys())):
             if language_code not in x:
                 res[language_code] = y[language_code]
