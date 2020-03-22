@@ -1,8 +1,6 @@
-===== processor #0 does reading country code file for 2028(micro s) =====
+===== processor #0 does reading country code file for 1132(micro s) =====
 
 invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
-unknown country code eu
-unknown country code ca
 invalid line: ]}
 processor #0 processes 4057525 lines.
 ===== top 10 most commonly used hashtags =====
@@ -29,10 +27,10 @@ processor #0 processes 4057525 lines.
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 127913(micro s) =====
+===== processor #0 does dumping output for 55461(micro s) =====
 
-Programs runs 15290(micro s)
+Programs runs 260073(micro s)
 
-real	24m24.791s
-user	0m0.075s
-sys	0m0.110s
+real	8m40.267s
+user	0m0.036s
+sys	0m0.061s
