@@ -1,39 +1,39 @@
-===== processor #1 does reading country code file for 2177(micro s) =====
+===== processor #1 does reading country code file for 454(micro s) =====
 
-===== processor #1 does processing for 624727(micro s) =====
+===== processor #1 does processing for 41230(micro s) =====
 
 processor #1 recv 579647 lines.
-===== processor #3 does reading country code file for 3898(micro s) =====
+===== processor #3 does reading country code file for 497(micro s) =====
 
-===== processor #3 does processing for 622811(micro s) =====
+===== processor #3 does processing for 42878(micro s) =====
 
 processor #3 recv 579646 lines.
-===== processor #6 does reading country code file for 2544(micro s) =====
+===== processor #4 does reading country code file for 390(micro s) =====
 
-===== processor #6 does processing for 624884(micro s) =====
-
-processor #6 recv 579646 lines.
-===== processor #2 does reading country code file for 2270(micro s) =====
-
-===== processor #2 does processing for 624782(micro s) =====
-
-processor #2 recv 579646 lines.
-===== processor #4 does reading country code file for 2557(micro s) =====
-
-===== processor #4 does processing for 624882(micro s) =====
+===== processor #4 does processing for 41731(micro s) =====
 
 processor #4 recv 579646 lines.
-===== processor #5 does reading country code file for 2159(micro s) =====
+===== processor #5 does reading country code file for 1632(micro s) =====
 
-===== processor #5 does processing for 624754(micro s) =====
+===== processor #5 does processing for 42860(micro s) =====
 
 processor #5 recv 579646 lines.
-===== processor #7 does reading country code file for 2548(micro s) =====
+===== processor #6 does reading country code file for 1647(micro s) =====
 
-===== processor #7 does processing for 624869(micro s) =====
+===== processor #6 does processing for 42856(micro s) =====
+
+processor #6 recv 579646 lines.
+===== processor #2 does reading country code file for 393(micro s) =====
+
+===== processor #2 does processing for 42220(micro s) =====
+
+processor #2 recv 579646 lines.
+===== processor #7 does reading country code file for 1632(micro s) =====
+
+===== processor #7 does processing for 42868(micro s) =====
 
 processor #7 recv 579646 lines.
-===== processor #0 does reading country code file for 3897(micro s) =====
+===== processor #0 does reading country code file for 1083(micro s) =====
 
 invalid line: {"total_rows":215443567,"offset":211386044,"rows":[
 invalid line: ]}
@@ -62,10 +62,10 @@ processor #0 processes 4057525 lines.
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 47849(micro s) =====
+===== processor #0 does dumping output for 45009(micro s) =====
 
-Programs runs 124272(micro s)
+Programs runs 530713(micro s)
 
-real	3m11.366s
-user	0m0.035s
-sys	0m0.097s
+real	3m27.217s
+user	0m0.026s
+sys	0m0.054s
