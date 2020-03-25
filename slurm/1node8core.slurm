@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #SBATCH --account=COMP90024
+#SBATCH --partition=cloud
 #SBATCH --output=1node8core.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
