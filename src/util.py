@@ -113,16 +113,17 @@ def dump_hash_tag_output(hash_tag_count: Counter, n=10):
     :param hash_tag_count: {hash_tag, int} object
     :param n: default number of top summary to be displayed
     """
-    hash_tag_count_list = list(hash_tag_count.items())
-    top_n_hash_tags_list = heapq.nlargest(n, hash_tag_count_list, key=lambda x: x[1])
-    if top_n_hash_tags_list:
-        _, nth_hash_tag_count = top_n_hash_tags_list[-1]
-        top_n_hash_tags_list = sorted(list(filter(lambda x: x[1] >= nth_hash_tag_count, hash_tag_count_list)), key=lambda x: x[1], reverse=True)
+    top_n_hash_tags_list = hash_tag_count.most_common(n)
+    # hash_tag_count_list = list(hash_tag_count.items())
+    # top_n_hash_tags_list = heapq.nlargest(n, hash_tag_count_list, key=lambda x: x[1])
+    # if top_n_hash_tags_list:
+    #     _, nth_hash_tag_count = top_n_hash_tags_list[-1]
+    #     top_n_hash_tags_list = sorted(list(filter(lambda x: x[1] >= nth_hash_tag_count, hash_tag_count_list)), key=lambda x: x[1], reverse=True)
 
     print(SEPARATOR, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), SEPARATOR)
     for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
         try:
-            print("{:2d}. {: <25}, {:,}".format(i, hash_tag, hash_tag_count))
+            print("{:2d}. #{: <25}, {:,}".format(i, hash_tag, hash_tag_count))
         except UnicodeEncodeError:
             print("UnicodeEncodeError")
     print()
@@ -144,16 +145,17 @@ def dump_country_code_output(merged_language_summary_list: list, n=10):
     print()
 
 
-def dump_country_code_output2(reduced_language_code_count: dict, language_code_dict: dict, n=10):
+def dump_country_code_output2(reduced_language_code_count: Counter, language_code_dict: dict, n=10):
     """
-        :param reduced_language_code_count: {country_code: int} object
-        :param n: default number of top summary to be displayed
-        """
-    reduced_language_code_count_list = list(reduced_language_code_count.items())
-    top_n_languages = heapq.nlargest(n, reduced_language_code_count_list, key=lambda x: x[1])
-    if top_n_languages:
-        nth_language_count = top_n_languages[-1][1]
-        top_n_languages = sorted(list(filter(lambda x: x[1] >= nth_language_count, reduced_language_code_count_list)), key=lambda x: x[1], reverse=True)
+    :param reduced_language_code_count: {country_code: int} object
+    :param n: default number of top summary to be displayed
+    """
+    top_n_languages = reduced_language_code_count.most_common(n)
+    # reduced_language_code_count_list = list(reduced_language_code_count.items())
+    # top_n_languages = heapq.nlargest(n, reduced_language_code_count_list, key=lambda x: x[1])
+    # if top_n_languages:
+    #     nth_language_count = top_n_languages[-1][1]
+    #     top_n_languages = sorted(list(filter(lambda x: x[1] >= nth_language_count, reduced_language_code_count_list)), key=lambda x: x[1], reverse=True)
     print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
     for i, (language_code, count) in enumerate(top_n_languages, start=1):
         print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))

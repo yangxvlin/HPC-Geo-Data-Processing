@@ -53,8 +53,8 @@ class TwitterData:
             self.hash_tags += self._hash_tags_to_counter(cur)
 
     def _hash_tags_to_counter(self, json_doc):
-        return Counter(filter(lambda x: self._is_alnum_underscore(x), map(lambda x: '#' + x["text"].lower(), json_doc["entities"]["hashtags"])))
+        return Counter(filter(lambda x: self._is_alnum_underscore(x), map(lambda x: x["text"].lower(), json_doc["entities"]["hashtags"])))
 
     @staticmethod
     def _is_alnum_underscore(string: str):
-        return bool(re.match('^#[a-zA-Z0-9_]+$', string))
+        return bool(re.match('^[a-zA-Z0-9_]+$', string))
