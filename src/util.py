@@ -50,6 +50,18 @@ def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dic
         print("unknown country code", twitter_data.language_code)
 
 
+def processing_data2(preprocessed_line: str, hash_tag_count, language_code_count):
+    """
+    :param preprocessed_line: raw data after pre-processing
+    :param hash_tag_count: {hash_tag, int} object
+    :param language_code_count: {country_code: int} object
+    """
+    twitter_data = TwitterData(preprocessed_line)
+
+    hash_tag_count += twitter_data.hash_tags
+    language_code_count += Counter([twitter_data.language_code])
+
+
 def read_language_code(file_path: str):
     """
     :param file_path: country code file path
@@ -64,6 +76,16 @@ def read_language_code(file_path: str):
             language_dict[language_code] = language
 
     return language_dict
+
+
+def read_language_code_dict(file_path: str):
+    """
+    :param file_path: country code file path
+    :return: {country_code: country_name} dict
+    """
+
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
 
 
 def read_data_line_by_line(file_path: str):
@@ -119,6 +141,22 @@ def dump_country_code_output(merged_language_summary_list: list, n=10):
     print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
     for i, language_summary in enumerate(top_n_languages, start=1):
         print("{:2d}. {}".format(i, language_summary))
+    print()
+
+
+def dump_country_code_output2(reduced_language_code_count: dict, language_code_dict: dict, n=10):
+    """
+        :param reduced_language_code_count: {country_code: int} object
+        :param n: default number of top summary to be displayed
+        """
+    reduced_language_code_count_list = list(reduced_language_code_count.items())
+    top_n_languages = heapq.nlargest(n, reduced_language_code_count_list, key=lambda x: x[1])
+    if top_n_languages:
+        nth_language_count = top_n_languages[-1][1]
+        top_n_languages = sorted(list(filter(lambda x: x[1] >= nth_language_count, reduced_language_code_count_list)), key=lambda x: x[1], reverse=True)
+    print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
+    for i, (language_code, count) in enumerate(top_n_languages, start=1):
+        print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))
     print()
 
 

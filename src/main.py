@@ -11,7 +11,7 @@ from collections import Counter
 import argparse
 from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
-    read_n_lines
+    read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -28,16 +28,18 @@ def main(country_code_file_path, twitter_data_path):
     start = datetime.now()
 
     # read country_code info
-    language_summary_dict = read_language_code(country_code_file_path)
+    # language_summary_dict = read_language_code(country_code_file_path)
+    language_code_dict = read_language_code_dict(country_code_file_path)
     # TODO should language info in each process?
     dump_time(comm_rank, "reading country code file", datetime.now() - start)
 
     # counting hash_tag
     hash_tag_count = Counter()
+    language_code_count = Counter()
 
     # only one processor, no need to split data
     if comm_size == 1:
-        single_node_single_core_task(twitter_data_path, hash_tag_count, language_summary_dict, comm_rank)
+        single_node_single_core_task(twitter_data_path, hash_tag_count, language_code_count, comm_rank)
 
     # multi processor
     else:
@@ -58,19 +60,20 @@ def main(country_code_file_path, twitter_data_path):
             if line_number >= line_to_start:
                 preprocessed_line = preprocess_data(line)
                 if preprocessed_line:
-                    processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
+                    processing_data2(preprocessed_line, hash_tag_count, language_code_count)
                 else:
                     print(line_number)
 
     # reduce LanguageSummary, hash_tag_count from slave processors to master processor
-    reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
+    # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
+    reduced_language_code_count = comm.reduce(language_code_count, root=0, op=LanguageSummary.merge_language_list)
     reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
     # output summary in root process
     if comm_rank == 0:
         dumping_time_start = datetime.now()
         dump_hash_tag_output(reduced_hash_tag_count)
-        dump_country_code_output(reduced_language_summary_dict.values())
+        dump_country_code_output2(reduced_language_code_count, language_code_dict)
 
         end = datetime.now()
         dump_time(comm_rank, "dumping output", end - dumping_time_start)
@@ -78,11 +81,11 @@ def main(country_code_file_path, twitter_data_path):
         print("Programs runs {}(micro s)".format(program_run_time.microseconds))
 
 
-def single_node_single_core_task(twitter_data_path, hash_tag_count, language_summary_dict, comm_rank):
+def single_node_single_core_task(twitter_data_path, hash_tag_count, language_code_count, comm_rank):
     """
     :param twitter_data_path: the path of twitter_data
     :param hash_tag_count: Counter({hash_tag: int}) object
-    :param language_summary_dict: {country_cde: LanguageSummary} object
+    :param language_code_count: {country_cde: int} object
     :param comm_rank: the rank of the current processor
     """
     line_count = 0
@@ -91,7 +94,7 @@ def single_node_single_core_task(twitter_data_path, hash_tag_count, language_sum
         # the line is data
         line_count += 1
         if preprocessed_line:
-            processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
+            processing_data2(preprocessed_line, hash_tag_count, language_code_count)
 
     print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
