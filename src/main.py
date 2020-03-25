@@ -66,7 +66,7 @@ def main(country_code_file_path, twitter_data_path):
 
     # reduce LanguageSummary, hash_tag_count from slave processors to master processor
     # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
-    reduced_language_code_count = comm.reduce(language_code_count, root=0, op=LanguageSummary.merge_language_list)
+    reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
     reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
     # output summary in root process
