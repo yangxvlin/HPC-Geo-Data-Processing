@@ -40,8 +40,7 @@ def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dic
     """
     twitter_data = TwitterData(preprocessed_line)
 
-    for hash_tag in twitter_data.hash_tags:
-        hash_tag_count[hash_tag] += 1
+    hash_tag_count += twitter_data.hash_tags
 
     try:
         language_summary_dict[twitter_data.language_code].summarize(twitter_data)

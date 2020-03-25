@@ -6,6 +6,8 @@ Description: class for twitter data
 """
 
 import json
+import re
+from collections import Counter
 
 
 class TwitterData:
@@ -28,4 +30,31 @@ class TwitterData:
         #   https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/160043 -> suggests hashtag should contain foreign characters
         #       -> https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/154594
         # method b is used at here
-        self.hash_tags = tuple(map(lambda x: '#' + x["text"].lower(), json_data["doc"]["entities"]["hashtags"]))
+        json_data_doc = json_data["doc"]
+        self.hash_tags = self._hash_tags_to_counter(json_data_doc)
+        self._extract_retweeted_quoted(json_data_doc)
+
+    def _extract_retweeted_quoted(self, json_data_doc: dict):
+        def push_to_stack(stack_object, json_data_doc_object):
+            if "quoted_status" in json_data_doc_object:
+                stack_object.append(json_data_doc_object["quoted_status"])
+
+            if "retweeted_status" in json_data_doc_object:
+                stack_object.append(json_data_doc_object["retweeted_status"])
+
+        stack = []
+        push_to_stack(stack, json_data_doc)
+
+        while stack:
+            cur = stack.pop()
+
+            push_to_stack(stack, cur)
+
+            self.hash_tags += self._hash_tags_to_counter(cur)
+
+    def _hash_tags_to_counter(self, json_doc):
+        return Counter(filter(lambda x: self._is_alnum_underscore(x), map(lambda x: '#' + x["text"].lower(), json_doc["entities"]["hashtags"])))
+
+    @staticmethod
+    def _is_alnum_underscore(string: str):
+        return bool(re.match('^#[a-zA-Z0-9_]+$', string))
