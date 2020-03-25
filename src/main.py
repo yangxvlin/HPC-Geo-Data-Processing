@@ -91,6 +91,8 @@ def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_ra
     next_target = 1
     line_count = 0
 
+    time_start = datetime.now()
+
     for line in read_data_line_by_line(twitter_data_path):
         preprocessed_line = preprocess_data(line)
         # the line is data
@@ -105,6 +107,7 @@ def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_ra
     # send None to slave processors to stop receiving
     for i in range(1, comm_size):
         comm.send(None, i)
+    dump_time(comm_rank, "reading file", datetime.now() - time_start)
     print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
 
