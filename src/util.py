@@ -120,3 +120,12 @@ def dump_time(comm_rank, title, time_period):
     """
     print(SEPARATOR, "processor #{} does {} for {}(micro s)".format(comm_rank, title, time_period.microseconds), SEPARATOR)
     print()
+
+
+def read_n_lines(twitter_data_path: str):
+    with open(twitter_data_path, 'r', encoding='utf-8') as file:
+        first_line = file.readline()
+        assert first_line.endswith(",\"rows\":[\n")
+        first_line.replace(",\"rows\":[\n", "}")
+        json_first_line = json.load(first_line)
+        return json_first_line["total_rows"] - json_first_line["offset"]

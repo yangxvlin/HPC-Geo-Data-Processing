@@ -10,7 +10,9 @@ from mpi4py import MPI
 from collections import Counter
 import argparse
 from LanguageSummary import LanguageSummary
-from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data
+from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
+    read_n_lines
+import linecache
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -40,12 +42,18 @@ def main(country_code_file_path, twitter_data_path):
 
     # multi processor
     else:
-        # master processor split data to slave processors
-        if comm_rank == 0:
-            multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_rank)
-        # slave processors receive data from master processor and summarize hash_tag and language
-        else:
-            multi_core_slave_processor_task(comm, hash_tag_count, language_summary_dict, comm_rank)
+        n_lines = comm.bcast(read_n_lines(twitter_data_path), root=0)
+        # TODO is my line splits correct?
+        lines_per_core = n_lines // comm_size
+        lines_to_end = n_lines+1  # ignore first line
+        line_to_start = 1 + lines_per_core * comm_rank  # ignore first line
+        line_to_end = line_to_start + lines_per_core
+        if comm_rank == comm_size-1:  # last core to finish all remaining lines
+            line_to_end = lines_to_end
+
+        for line_number in range(line_to_start, line_to_end):
+            preprocessed_line = preprocess_data(linecache.getline(twitter_data_path, line_number))
+            processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
 
     # reduce LanguageSummary, hash_tag_count from slave processors to master processor
     reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
