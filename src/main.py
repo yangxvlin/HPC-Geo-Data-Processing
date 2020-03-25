@@ -52,8 +52,11 @@ def main(country_code_file_path, twitter_data_path):
             line_to_end = lines_to_end
 
         for line_number in range(line_to_start, line_to_end):
-            preprocessed_line = preprocess_data(linecache.getline(twitter_data_path, line_number))
-            processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
+            preprocessed_line = preprocess_data(linecache.getline(twitter_data_path, line_number+1))  # linecache is 1 based
+            if preprocessed_line:
+                processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
+            else:
+                print(line_number)
 
     # reduce LanguageSummary, hash_tag_count from slave processors to master processor
     reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
