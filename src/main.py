@@ -12,7 +12,6 @@ import argparse
 from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
     read_n_lines
-import linecache
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -43,6 +42,8 @@ def main(country_code_file_path, twitter_data_path):
     # multi processor
     else:
         n_lines = comm.bcast(read_n_lines(twitter_data_path), root=0)
+        # to test smallTwitter.json, uncomment the following line
+        # n_lines = 5000
         # TODO is my line splits correct?
         lines_per_core = n_lines // comm_size
         lines_to_end = n_lines+1  # ignore first line
@@ -51,12 +52,15 @@ def main(country_code_file_path, twitter_data_path):
         if comm_rank == comm_size-1:  # last core to finish all remaining lines
             line_to_end = lines_to_end
 
-        for line_number in range(line_to_start, line_to_end):
-            preprocessed_line = preprocess_data(linecache.getline(twitter_data_path, line_number+1))  # linecache is 1 based
-            if preprocessed_line:
-                processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
-            else:
-                print(line_number)
+        for line_number, line in enumerate(read_data_line_by_line(twitter_data_path)):  # ignore first line
+            if line_number == line_to_end:
+                break
+            if line_number >= line_to_start:
+                preprocessed_line = preprocess_data(line)
+                if preprocessed_line:
+                    processing_data(preprocessed_line, hash_tag_count, language_summary_dict)
+                else:
+                    print(line_number)
 
     # reduce LanguageSummary, hash_tag_count from slave processors to master processor
     reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)

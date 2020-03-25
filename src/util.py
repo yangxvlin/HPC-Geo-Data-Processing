@@ -76,6 +76,16 @@ def read_data_line_by_line(file_path: str):
             yield line
 
 
+def read_data(file_path: str):
+    """
+    lazy line by line reader
+    :param file_path: twitter data file path
+    """
+    with open(file_path, 'r', encoding='utf-8') as file:
+        for line in file:
+            yield line
+
+
 def dump_hash_tag_output(hash_tag_count: Counter, n=10):
     """
     :param hash_tag_count: {hash_tag, int} object
