@@ -1,30 +1,30 @@
-===== processor #2 does reading country code file for 733(micro s) =====
+===== processor #1 does reading country code file for 359(micro s) =====
 
-===== processor #3 does reading country code file for 407(micro s) =====
+===== processor #4 does reading country code file for 421(micro s) =====
 
-===== processor #4 does reading country code file for 328(micro s) =====
+===== processor #2 does reading country code file for 341(micro s) =====
 
-===== processor #1 does reading country code file for 412(micro s) =====
+===== processor #5 does reading country code file for 342(micro s) =====
 
-===== processor #5 does reading country code file for 652(micro s) =====
+===== processor #3 does reading country code file for 420(micro s) =====
 
-===== processor #6 does reading country code file for 635(micro s) =====
+===== processor #6 does reading country code file for 473(micro s) =====
 
-===== processor #7 does reading country code file for 492(micro s) =====
+===== processor #7 does reading country code file for 423(micro s) =====
 
-===== processor #0 does reading country code file for 278(micro s) =====
+===== processor #0 does reading country code file for 312(micro s) =====
 
 ===== top 10 most commonly used hashtags =====
- 1. #auspol                  , 37,307
- 2. #coronavirus             , 18,870
- 3. #firefightaustralia      , 13,123
- 4. #oldme                   , 12,777
- 5. #grammys                 , 10,136
- 6. #assange                 , 9,531
- 7. #sportsrorts             , 9,475
- 8. #scottyfrommarketing     , 8,815
- 9. #sydney                  , 8,481
-10. #breaking                , 7,994
+ 1. #auspol                   , 37,307
+ 2. #coronavirus              , 18,870
+ 3. #firefightaustralia       , 13,123
+ 4. #oldme                    , 12,777
+ 5. #grammys                  , 10,136
+ 6. #assange                  , 9,531
+ 7. #sportsrorts              , 9,475
+ 8. #scottyfrommarketing      , 8,815
+ 9. #sydney                   , 8,481
+10. #breaking                 , 7,994
 
 ===== top 10 most commonly tweeted languages =====
  1. English    ( en), 3,107,116
@@ -38,10 +38,10 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 40871(micro s) =====
+===== processor #0 does dumping output for 12570(micro s) =====
 
-Programs runs 636999(micro s)
+Programs runs 558221(micro s)
 
-real	6m34.328s
-user	0m0.021s
-sys	0m0.042s
+real	6m36.133s
+user	0m0.023s
+sys	0m0.038s
