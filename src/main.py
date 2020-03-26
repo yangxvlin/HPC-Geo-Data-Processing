@@ -43,6 +43,10 @@ def main(country_code_file_path, twitter_data_path):
     if comm_size == 1:
         single_node_single_core_task(twitter_data_path, hash_tag_count, language_code_count, comm_rank)
 
+        n = 10
+        reduced_hash_tag_count = hash_tag_count.most_common(n)
+        reduced_language_code_count = language_code_count.most_common(n)
+
     # multi processor
     else:
         n_lines = comm.bcast(read_n_lines(twitter_data_path), root=0)
@@ -66,27 +70,27 @@ def main(country_code_file_path, twitter_data_path):
                 else:
                     print(line_number)
 
-    # reduce LanguageSummary, hash_tag_count from slave processors to master processor
-    # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
-    reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
-    reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
+        # reduce LanguageSummary, hash_tag_count from slave processors to master processor
+        # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
+        reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
+        reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
-    if comm_rank == 0:
-        # split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
-        split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
-        split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
-    else:
-        split_language_code_np_array = None
-        split_hash_tag_np_array = None
+        if comm_rank == 0:
+            # split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
+            split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
+            split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
+        else:
+            split_language_code_np_array = None
+            split_hash_tag_np_array = None
 
-    local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
-    local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
+        local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
+        local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
 
-    # print(comm_rank, local_language_code, local_hash_tag)
+        # print(comm_rank, local_language_code, local_hash_tag)
 
-    n = 10
-    reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
-    reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
+        n = 10
+        reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
+        reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
 
     # output summary in root process
     if comm_rank == 0:
@@ -107,15 +111,15 @@ def single_node_single_core_task(twitter_data_path, hash_tag_count, language_cod
     :param language_code_count: {country_cde: int} object
     :param comm_rank: the rank of the current processor
     """
-    line_count = 0
+    # line_count = 0
     for line in read_data_line_by_line(twitter_data_path):
         preprocessed_line = preprocess_data(line)
         # the line is data
-        line_count += 1
+        # line_count += 1
         if preprocessed_line:
             processing_data2(preprocessed_line, hash_tag_count, language_code_count)
 
-    print("processor #{} processes {} lines.".format(comm_rank, line_count))
+    # print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
 
 def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_rank):
