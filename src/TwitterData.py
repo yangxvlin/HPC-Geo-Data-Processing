@@ -53,7 +53,7 @@ class TwitterData:
             self.hash_tags += self._hash_tags_to_counter(cur)
 
     def _hash_tags_to_counter(self, json_doc):
-        return Counter(map(lambda x: x["text"].lower(), filter(lambda x: self._is_alnum_underscore(x), json_doc["entities"]["hashtags"])))
+        return Counter(map(lambda x: x.lower(), filter(lambda x: self._is_alnum_underscore(x["text"]), json_doc["entities"]["hashtags"])))
 
     @staticmethod
     def _is_alnum_underscore(string: str):
