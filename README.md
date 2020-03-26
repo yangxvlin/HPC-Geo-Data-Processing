@@ -42,9 +42,13 @@ mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/sma
 3. run task on spartan
 ```
 cd slurm
-sbatch 1node1core.slurm > 1node1core.out
-sbatch 1node8core.slurm > 1node8core.out
-sbatch 2node8core.slurm > 2node8core.out
+sbatch 1node1core.slurm > 1node1core-physical.out
+sbatch 1node8core.slurm > 1node8core-physical.out
+sbatch 2node8core.slurm > 2node8core-physical.out
+
+sbatch 1node1core-snowy.slurm > 1node1core-snowy.out
+sbatch 1node8core-snowy.slurm > 1node8core-snowy.out
+sbatch 2node8core-snowy.slurm > 2node8core-snowy.out
 ```
 
 ## spartan
