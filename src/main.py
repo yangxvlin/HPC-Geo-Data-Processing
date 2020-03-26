@@ -4,14 +4,16 @@ Student id:  904904
 Date:        2020-3-10 15:28:34
 Description: main function
 """
+import heapq
 import operator
 from datetime import datetime
 from mpi4py import MPI
 from collections import Counter
 import argparse
+import numpy as np
 from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
-    read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2
+    read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2, merge_list, chunks, dump_hash_tag_output3, dump_country_code_output3
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -69,11 +71,28 @@ def main(country_code_file_path, twitter_data_path):
     reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
     reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
+    if comm_rank == 0:
+        # split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
+        split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
+        split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
+    else:
+        split_language_code_np_array = None
+        split_hash_tag_np_array = None
+
+    local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
+    local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
+
+    # print(comm_rank, local_language_code, local_hash_tag)
+
+    n = 10
+    reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
+    reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
+
     # output summary in root process
     if comm_rank == 0:
         dumping_time_start = datetime.now()
-        dump_hash_tag_output(reduced_hash_tag_count)
-        dump_country_code_output2(reduced_language_code_count, language_code_dict)
+        dump_hash_tag_output3(reduced_hash_tag_count)
+        dump_country_code_output3(reduced_language_code_count, language_code_dict)
 
         end = datetime.now()
         dump_time(comm_rank, "dumping output", end - dumping_time_start)

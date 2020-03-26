@@ -46,3 +46,9 @@ sbatch 1node1core.slurm > 1node1core.out
 sbatch 1node8core.slurm > 1node8core.out
 sbatch 2node8core.slurm > 2node8core.out
 ```
+
+## spartan
+### see jobs under execution
+```squeue -u xuliny```
+### Spartan Weather Report 
+```spartan_weather```
