@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --account=COMP90024
-#SBATCH --partition=snowy
-#SBATCH --output=1node1core-snowy.txt
+#SBATCH --partition=physical
+#SBATCH --output=1node1core-physical.txt
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mail-user=xuliny@student.unimelb.edu.au
