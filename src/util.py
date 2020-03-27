@@ -58,7 +58,14 @@ def processing_data2(preprocessed_line: str, hash_tag_count, language_code_count
     """
     twitter_data = TwitterData(preprocessed_line)
 
-    hash_tag_count += twitter_data.hash_tags
+    for hash_tag in twitter_data.hash_tags:
+        hash_tag = hash_tag.lower()
+
+        if hash_tag in hash_tag_count:
+            hash_tag_count[hash_tag] += 1
+        else:
+            hash_tag_count[hash_tag] = 1
+
     if twitter_data.language_code in language_code_count:
         language_code_count[twitter_data.language_code] += 1
     else:

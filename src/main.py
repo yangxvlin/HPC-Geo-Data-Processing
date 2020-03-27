@@ -38,7 +38,7 @@ def main(country_code_file_path, twitter_data_path):
     dump_time(comm_rank, "reading country code file", time.time() - start)
 
     # counting hash_tag
-    hash_tag_count = Counter()
+    hash_tag_count = {}
     language_code_count = {}
 
     # only one processor, no need to split data
@@ -64,14 +64,7 @@ def main(country_code_file_path, twitter_data_path):
                 # line_count += 1
                 if preprocessed_line:
                     count += 1
-                    twitter_data = TwitterData(preprocessed_line)
-
-                    hash_tag_count += twitter_data.hash_tags
-
-                    if twitter_data.language_code in language_code_count:
-                        language_code_count[twitter_data.language_code] += 1
-                    else:
-                        language_code_count[twitter_data.language_code] = 1
+                    processing_data2(preprocessed_line, hash_tag_count, language_code_count)
 
             if count >= 5000:
                 print(comm_rank, comm_size, count, line_to_start, line_to_end)
@@ -79,7 +72,7 @@ def main(country_code_file_path, twitter_data_path):
                 break
 
         n = 10
-        reduced_hash_tag_count = hash_tag_count.most_common(n)
+        reduced_hash_tag_count = Counter(hash_tag_count).most_common(n)
         reduced_language_code_count = Counter(language_code_count).most_common(n)
 
     # multi processor
@@ -108,7 +101,7 @@ def main(country_code_file_path, twitter_data_path):
         # reduce LanguageSummary, hash_tag_count from slave processors to master processor
         # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
         reduced_language_code_count = comm.reduce(language_code_count, root=0, op=merge_dict)
-        reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
+        reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=merge_dict)
 
         if comm_rank == 0:
             # split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)

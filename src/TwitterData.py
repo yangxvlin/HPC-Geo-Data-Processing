@@ -30,8 +30,9 @@ class TwitterData:
         #   https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/160043 -> suggests hashtag should contain foreign characters
         #       -> https://canvas.lms.unimelb.edu.au/courses/17514/discussion_topics/154594
         # method b is used at here
-        json_data_doc = json_data["doc"]
-        self.hash_tags = self._hash_tags_to_counter(json_data_doc)
+        # json_data_doc = json_data["doc"]
+        # self.hash_tags = self._hash_tags_to_counter(json_data_doc)
+        self.hash_tags = re.findall("#[a-zA-Z0-9_]+", json_data["doc"]["text"])
         # self._extract_retweeted_quoted(json_data_doc)
 
     def _extract_retweeted_quoted(self, json_data_doc: dict):
