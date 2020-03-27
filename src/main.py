@@ -51,6 +51,10 @@ def main(country_code_file_path, twitter_data_path):
         if comm_rank == comm_size - 1:  # last core to finish all remaining lines
             line_to_end = lines_to_end
 
+        count = 0
+
+        tmp_start = time.time()
+
         for line_number, line in enumerate(read_data_line_by_line(twitter_data_path)):  # ignore first line
             if line_number == line_to_end:
                 break
@@ -59,6 +63,7 @@ def main(country_code_file_path, twitter_data_path):
                 # the line is data
                 # line_count += 1
                 if preprocessed_line:
+                    count += 1
                     twitter_data = TwitterData(preprocessed_line)
 
                     hash_tag_count += twitter_data.hash_tags
@@ -67,6 +72,11 @@ def main(country_code_file_path, twitter_data_path):
                         language_code_count[twitter_data.language_code] += 1
                     else:
                         language_code_count[twitter_data.language_code] = 1
+
+            if count >= 5000:
+                print(comm_rank, comm_size, count, line_to_start, line_to_end)
+                dump_time(comm_rank, "processing 5000 lines", time.time() - tmp_start)
+                break
 
         n = 10
         reduced_hash_tag_count = hash_tag_count.most_common(n)
