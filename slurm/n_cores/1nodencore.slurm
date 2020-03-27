@@ -2,10 +2,7 @@
 
 #SBATCH --account=COMP90024
 #SBATCH --partition=physical
-#SBATCH --array=1-200
-#SBATCH --output=1node${SLURM_ARRAY_TASK_ID}core-physical.txt
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=SLURM_ARRAY_TASK_ID
 #SBATCH --mail-user=xuliny@student.unimelb.edu.au
 #SBATCH --mail-type=End
 #SBATCH --time=1-0:0:00
