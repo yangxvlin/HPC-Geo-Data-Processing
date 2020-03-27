@@ -49,6 +49,9 @@ sbatch 2node8core.slurm > 2node8core-physical.out
 sbatch 1node1core-snowy.slurm > 1node1core-snowy.out
 sbatch 1node8core-snowy.slurm > 1node8core-snowy.out
 sbatch 2node8core-snowy.slurm > 2node8core-snowy.out
+
+sbatch 1node8core-cloud.slurm > 1node8core-cloud.out
+sbatch 2node8core-cloud.slurm > 2node8core-cloud.out
 ```
 
 ## spartan
