@@ -76,7 +76,7 @@ def dump_hash_tag_output(hash_tag_count: list):
     print()
 
 
-def dump_country_code_output3(reduced_language_code_count: list, language_code_dict: dict):
+def dump_country_code_output(reduced_language_code_count: list, language_code_dict: dict):
     """
     :param reduced_language_code_count: {country_code: int} object
     :param language_code_dict: {country_code: country_name} object

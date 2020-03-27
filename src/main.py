@@ -14,8 +14,7 @@ import numpy as np
 from mpi4py import MPI
 
 from util import read_data_line_by_line, preprocess_data, dump_time, read_n_lines, read_language_code_dict, processing_data, merge_list, dump_hash_tag_output, \
-    dump_country_code_output3, \
-    dump_num_processor
+    dump_country_code_output, dump_num_processor
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -48,10 +47,10 @@ def main(country_code_file_path, twitter_data_path):
     tmp_start = time.time()
     n_lines = comm.bcast(read_n_lines(twitter_data_path), root=0)
     lines_per_core = n_lines // comm_size
-    lines_to_end = n_lines+1  # ignore first line
+    lines_to_end = n_lines + 1  # ignore first line
     line_to_start = 1 + lines_per_core * comm_rank  # ignore first line
     line_to_end = line_to_start + lines_per_core
-    if comm_rank == comm_size-1:  # last core to finish all remaining lines
+    if comm_rank == comm_size - 1:  # last core to finish all remaining lines
         line_to_end = lines_to_end
 
     # processing lines in specified range
@@ -68,9 +67,11 @@ def main(country_code_file_path, twitter_data_path):
     tmp_start = time.time()
     # concurrent calculating top n hash_tags, languages used
     if comm_size > 1:
+        # 1) merge Counter from each processor
         reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
         reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
+        # 2) split merged to each processor
         if comm_rank == 0:
             split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
             split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
@@ -78,11 +79,14 @@ def main(country_code_file_path, twitter_data_path):
             split_language_code_np_array = None
             split_hash_tag_np_array = None
 
+        # 3) scatter merged to each processor
         local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
         local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
 
+        # 3) merge each processor's top n calculation result
         reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
         reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
+    # single processor calculating top n
     else:
         reduced_hash_tag_count = hash_tag_count.most_common(n)
         reduced_language_code_count = language_code_count.most_common(n)
@@ -92,7 +96,7 @@ def main(country_code_file_path, twitter_data_path):
     if comm_rank == 0:
         dumping_time_start = time.time()
         dump_hash_tag_output(reduced_hash_tag_count)
-        dump_country_code_output3(reduced_language_code_count, language_code_dict)
+        dump_country_code_output(reduced_language_code_count, language_code_dict)
 
         end = time.time()
         dump_time(comm_rank, "dumping output", end - dumping_time_start)
