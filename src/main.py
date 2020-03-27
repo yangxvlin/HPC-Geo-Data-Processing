@@ -11,8 +11,10 @@ from collections import Counter
 import argparse
 import numpy as np
 from LanguageSummary import LanguageSummary
+from TwitterData import TwitterData
 from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
-    read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2, merge_list, chunks, dump_hash_tag_output3, dump_country_code_output3
+    read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2, merge_list, chunks, dump_hash_tag_output3, dump_country_code_output3, \
+    merge_dict
 import time
 
 
@@ -31,21 +33,33 @@ def main(country_code_file_path, twitter_data_path):
 
     # read country_code info
     # language_summary_dict = read_language_code(country_code_file_path)
-    language_code_dict = read_language_code_dict(country_code_file_path)
+    language_code_dict = comm.bcast(read_language_code_dict(country_code_file_path), root=0)
     # TODO should language info in each process?
     dump_time(comm_rank, "reading country code file", time.time() - start)
 
     # counting hash_tag
     hash_tag_count = Counter()
-    language_code_count = Counter()
+    language_code_count = {}
 
     # only one processor, no need to split data
     if comm_size == 1:
-        single_node_single_core_task(twitter_data_path, hash_tag_count, language_code_count, comm_rank)
+        for line in read_data_line_by_line(twitter_data_path):
+            preprocessed_line = preprocess_data(line)
+            # the line is data
+            # line_count += 1
+            if preprocessed_line:
+                twitter_data = TwitterData(preprocessed_line)
+
+                hash_tag_count += twitter_data.hash_tags
+
+                if twitter_data.language_code in language_code_count:
+                    language_code_count[twitter_data.language_code] += 1
+                else:
+                    language_code_count[twitter_data.language_code] = 1
 
         n = 10
         reduced_hash_tag_count = hash_tag_count.most_common(n)
-        reduced_language_code_count = language_code_count.most_common(n)
+        reduced_language_code_count = Counter(language_code_count).most_common(n)
 
     # multi processor
     else:
@@ -72,7 +86,7 @@ def main(country_code_file_path, twitter_data_path):
 
         # reduce LanguageSummary, hash_tag_count from slave processors to master processor
         # reduced_language_summary_dict = comm.reduce(language_summary_dict, root=0, op=LanguageSummary.merge_language_list)
-        reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
+        reduced_language_code_count = comm.reduce(language_code_count, root=0, op=merge_dict)
         reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
 
         if comm_rank == 0:

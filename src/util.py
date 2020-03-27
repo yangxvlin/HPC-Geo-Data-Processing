@@ -59,7 +59,10 @@ def processing_data2(preprocessed_line: str, hash_tag_count, language_code_count
     twitter_data = TwitterData(preprocessed_line)
 
     hash_tag_count += twitter_data.hash_tags
-    language_code_count += Counter([twitter_data.language_code])
+    if twitter_data.language_code in language_code_count:
+        language_code_count[twitter_data.language_code] += 1
+    else:
+        language_code_count[twitter_data.language_code] = 1
 
 
 def read_language_code(file_path: str):
@@ -251,3 +254,7 @@ def merge_list(x: list, y: list, n=10):
 def chunks(l, n):
     n = max(1, n)
     return [l[i:i+n] for i in range(0, len(l), n)]
+
+
+def merge_dict(x: dict, y: dict):
+    return Counter(x) + Counter(y)
