@@ -32,7 +32,7 @@ class TwitterData:
         # method b is used at here
         json_data_doc = json_data["doc"]
         self.hash_tags = self._hash_tags_to_counter(json_data_doc)
-        self._extract_retweeted_quoted(json_data_doc)
+        # self._extract_retweeted_quoted(json_data_doc)
 
     def _extract_retweeted_quoted(self, json_data_doc: dict):
         def push_to_stack(stack_object, json_data_doc_object):
