@@ -6,13 +6,8 @@ Description: some helper functions
 """
 
 import json
-from collections import Counter
-
-from LanguageSummary import LanguageSummary
-import heapq
 
 from TwitterData import TwitterData
-
 
 """ separator used for pretty printing """
 SEPARATOR = "=" * 5
@@ -32,60 +27,19 @@ def preprocess_data(data: str):
     return None
 
 
-def processing_data(preprocessed_line: str, hash_tag_count, language_summary_dict):
-    """
-    :param preprocessed_line: raw data after pre-processing
-    :param hash_tag_count: {hash_tag, int} object
-    :param language_summary_dict: {country_code: LanguageSummary} object
-    """
-    twitter_data = TwitterData(preprocessed_line)
-
-    hash_tag_count += twitter_data.hash_tags
-
-    try:
-        language_summary_dict[twitter_data.language_code].summarize(twitter_data)
-    except KeyError:
-        language_summary_dict[twitter_data.language_code] = LanguageSummary(twitter_data.language_code, "unknown")
-        language_summary_dict[twitter_data.language_code].summarize(twitter_data)
-        print("unknown country code", twitter_data.language_code)
-
-
-def processing_data2(preprocessed_line: str, hash_tag_count, language_code_count):
+def processing_data(preprocessed_line: str, hash_tag_count, language_code_count):
     """
     :param preprocessed_line: raw data after pre-processing
     :param hash_tag_count: {hash_tag, int} object
     :param language_code_count: {country_code: int} object
     """
     twitter_data = TwitterData(preprocessed_line)
+    language_code_count[twitter_data.language_code] += 1
 
     for hash_tag in twitter_data.hash_tags:
         hash_tag = hash_tag.lower()
 
-        if hash_tag in hash_tag_count:
-            hash_tag_count[hash_tag] += 1
-        else:
-            hash_tag_count[hash_tag] = 1
-
-    if twitter_data.language_code in language_code_count:
-        language_code_count[twitter_data.language_code] += 1
-    else:
-        language_code_count[twitter_data.language_code] = 1
-
-
-def read_language_code(file_path: str):
-    """
-    :param file_path: country code file path
-    :return: {country_code: LanguageSummary} object
-    """
-    language_dict = {}
-
-    with open(file_path, 'r', encoding='utf-8') as file:
-        json_data = json.load(file)
-        for language_code in json_data:
-            language = LanguageSummary(language_code, json_data[language_code])
-            language_dict[language_code] = language
-
-    return language_dict
+        hash_tag_count[hash_tag] += 1
 
 
 def read_language_code_dict(file_path: str):
@@ -108,102 +62,26 @@ def read_data_line_by_line(file_path: str):
             yield line
 
 
-def read_data(file_path: str):
-    """
-    lazy line by line reader
-    :param file_path: twitter data file path
-    """
-    with open(file_path, 'r', encoding='utf-8') as file:
-        for line in file:
-            yield line
-
-
-def dump_hash_tag_output(hash_tag_count: Counter, n=10):
+def dump_hash_tag_output(hash_tag_count: list):
     """
     :param hash_tag_count: {hash_tag, int} object
-    :param n: default number of top summary to be displayed
-    """
-    top_n_hash_tags_list = hash_tag_count.most_common(n)
-    # hash_tag_count_list = list(hash_tag_count.items())
-    # top_n_hash_tags_list = heapq.nlargest(n, hash_tag_count_list, key=lambda x: x[1])
-    # if top_n_hash_tags_list:
-    #     _, nth_hash_tag_count = top_n_hash_tags_list[-1]
-    #     top_n_hash_tags_list = sorted(list(filter(lambda x: x[1] >= nth_hash_tag_count, hash_tag_count_list)), key=lambda x: x[1], reverse=True)
-
-    print(SEPARATOR, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), SEPARATOR)
-    for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
-        try:
-            print("{:2d}. #{: <25}, {:,}".format(i, hash_tag, hash_tag_count))
-        except UnicodeEncodeError:
-            print("UnicodeEncodeError")
-    print()
-
-
-def dump_hash_tag_output3(hash_tag_count: list, n=10):
-    """
-    :param hash_tag_count: {hash_tag, int} object
-    :param n: default number of top summary to be displayed
     """
     top_n_hash_tags_list = hash_tag_count
-    # hash_tag_count_list = list(hash_tag_count.items())
-    # top_n_hash_tags_list = heapq.nlargest(n, hash_tag_count_list, key=lambda x: x[1])
-    # if top_n_hash_tags_list:
-    #     _, nth_hash_tag_count = top_n_hash_tags_list[-1]
-    #     top_n_hash_tags_list = sorted(list(filter(lambda x: x[1] >= nth_hash_tag_count, hash_tag_count_list)), key=lambda x: x[1], reverse=True)
-
     print(SEPARATOR, "top {} most commonly used hashtags".format(len(top_n_hash_tags_list)), SEPARATOR)
     for i, (hash_tag, hash_tag_count) in enumerate(top_n_hash_tags_list, start=1):
         try:
-            print("{:2d}. #{: <25}, {:,}".format(i, hash_tag, hash_tag_count))
+            print("{:2d}. {: <25}, {:,}".format(i, hash_tag, hash_tag_count))
         except UnicodeEncodeError:
             print("UnicodeEncodeError")
     print()
 
 
-def dump_country_code_output3(reduced_language_code_count: list, language_code_dict: dict, n=10):
+def dump_country_code_output3(reduced_language_code_count: list, language_code_dict: dict):
     """
     :param reduced_language_code_count: {country_code: int} object
-    :param n: default number of top summary to be displayed
+    :param language_code_dict: {country_code: country_name} object
     """
     top_n_languages = reduced_language_code_count
-    # reduced_language_code_count_list = list(reduced_language_code_count.items())
-    # top_n_languages = heapq.nlargest(n, reduced_language_code_count_list, key=lambda x: x[1])
-    # if top_n_languages:
-    #     nth_language_count = top_n_languages[-1][1]
-    #     top_n_languages = sorted(list(filter(lambda x: x[1] >= nth_language_count, reduced_language_code_count_list)), key=lambda x: x[1], reverse=True)
-    print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
-    for i, (language_code, count) in enumerate(top_n_languages, start=1):
-        print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))
-    print()
-
-
-def dump_country_code_output(merged_language_summary_list: list, n=10):
-    """
-    :param merged_language_summary_list: [LanguageSummary] object
-    :param n: default number of top summary to be displayed
-    """
-    non_zero_merged_language_summary_list = list(filter(lambda x: x.count > 0, merged_language_summary_list))
-    top_n_languages = heapq.nlargest(n, non_zero_merged_language_summary_list, key=lambda x: x.count)
-    if top_n_languages:
-        nth_language_count = top_n_languages[-1].count
-        top_n_languages = sorted(list(filter(lambda x: x.count >= nth_language_count, non_zero_merged_language_summary_list)), key=lambda x: x.count, reverse=True)
-    print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
-    for i, language_summary in enumerate(top_n_languages, start=1):
-        print("{:2d}. {}".format(i, language_summary))
-    print()
-
-
-def dump_country_code_output2(reduced_language_code_count: Counter, language_code_dict: dict, n=10):
-    """
-    :param reduced_language_code_count: {country_code: int} object
-    :param n: default number of top summary to be displayed
-    """
-    top_n_languages = reduced_language_code_count.most_common(n)
-    # reduced_language_code_count_list = list(reduced_language_code_count.items())
-    # top_n_languages = heapq.nlargest(n, reduced_language_code_count_list, key=lambda x: x[1])
-    # if top_n_languages:
-    #     nth_language_count = top_n_languages[-1][1]
-    #     top_n_languages = sorted(list(filter(lambda x: x[1] >= nth_language_count, reduced_language_code_count_list)), key=lambda x: x[1], reverse=True)
     print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
     for i, (language_code, count) in enumerate(top_n_languages, start=1):
         print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))
@@ -221,6 +99,10 @@ def dump_time(comm_rank, title, time_period):
 
 
 def read_n_lines(twitter_data_path: str):
+    """
+    :param twitter_data_path: twitter data file path
+    :return: read number of lines of data
+    """
     with open(twitter_data_path, 'r', encoding='utf-8') as file:
         first_line = file.readline()
         assert first_line.endswith(",\"rows\":[\n")
@@ -230,6 +112,12 @@ def read_n_lines(twitter_data_path: str):
 
 
 def merge_list(x: list, y: list, n=10):
+    """
+    :param x: sorted list x
+    :param y: sorted list y
+    :param n: merged list size
+    :return: [(hash_tag, count)] list with size n
+    """
     merged = []
 
     while len(merged) < n and (len(x) > 0 or len(y) > 0):
@@ -258,10 +146,9 @@ def merge_list(x: list, y: list, n=10):
     return merged
 
 
-def chunks(l, n):
-    n = max(1, n)
-    return [l[i:i+n] for i in range(0, len(l), n)]
-
-
-def merge_dict(x: dict, y: dict):
-    return Counter(x) + Counter(y)
+def dump_num_processor(comm_size):
+    """
+    :param comm_size: number of processor
+    """
+    print(SEPARATOR*2, "runs with {} processors".format(comm_size), SEPARATOR*2)
+    print()
