@@ -206,7 +206,7 @@ def dump_time(comm_rank, title, time_period):
     :param title: the content of printing
     :param time_period: the period of time to be displayed
     """
-    print(SEPARATOR, "processor #{} does {} for {}(micro s)".format(comm_rank, title, time_period.microseconds), SEPARATOR)
+    print(SEPARATOR, "processor #{} does {} for {}(s)".format(comm_rank, title, time_period), SEPARATOR)
     print()
 
 

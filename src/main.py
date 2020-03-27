@@ -6,7 +6,6 @@ Description: main function
 """
 import heapq
 import operator
-from datetime import datetime
 from mpi4py import MPI
 from collections import Counter
 import argparse
@@ -14,6 +13,7 @@ import numpy as np
 from LanguageSummary import LanguageSummary
 from util import read_language_code, read_data_line_by_line, preprocess_data, dump_country_code_output, dump_hash_tag_output, dump_time, processing_data, \
     read_n_lines, read_language_code_dict, processing_data2, dump_country_code_output2, merge_list, chunks, dump_hash_tag_output3, dump_country_code_output3
+import time
 
 
 def main(country_code_file_path, twitter_data_path):
@@ -27,13 +27,13 @@ def main(country_code_file_path, twitter_data_path):
     comm_size = comm.Get_size()
 
     # the starting timestamp
-    start = datetime.now()
+    start = time.time()
 
     # read country_code info
     # language_summary_dict = read_language_code(country_code_file_path)
     language_code_dict = read_language_code_dict(country_code_file_path)
     # TODO should language info in each process?
-    dump_time(comm_rank, "reading country code file", datetime.now() - start)
+    dump_time(comm_rank, "reading country code file", time.time() - start)
 
     # counting hash_tag
     hash_tag_count = Counter()
@@ -94,14 +94,14 @@ def main(country_code_file_path, twitter_data_path):
 
     # output summary in root process
     if comm_rank == 0:
-        dumping_time_start = datetime.now()
+        dumping_time_start = time.time()
         dump_hash_tag_output3(reduced_hash_tag_count)
         dump_country_code_output3(reduced_language_code_count, language_code_dict)
 
-        end = datetime.now()
+        end = time.time()
         dump_time(comm_rank, "dumping output", end - dumping_time_start)
         program_run_time = end - start
-        print("Programs runs {}(micro s)".format(program_run_time.microseconds))
+        print("Programs runs {}(s)".format(program_run_time))
 
 
 def single_node_single_core_task(twitter_data_path, hash_tag_count, language_code_count, comm_rank):
@@ -132,7 +132,7 @@ def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_ra
     next_target = 1
     line_count = 0
 
-    time_start = datetime.now()
+    time_start = time.time()
 
     for line in read_data_line_by_line(twitter_data_path):
         preprocessed_line = preprocess_data(line)
@@ -148,7 +148,7 @@ def multi_core_master_processor_task(twitter_data_path, comm_size, comm, comm_ra
     # send None to slave processors to stop receiving
     for i in range(1, comm_size):
         comm.send(None, i)
-    dump_time(comm_rank, "reading file", datetime.now() - time_start)
+    dump_time(comm_rank, "reading file", time.time() - time_start)
     print("processor #{} processes {} lines.".format(comm_rank, line_count))
 
 
@@ -159,7 +159,7 @@ def multi_core_slave_processor_task(comm, hash_tag_count, language_summary_dict,
     :param language_summary_dict: {country_cde: LanguageSummary} object
     :param comm_rank: the rank of the current processor
     """
-    processing_time_start = datetime.now()
+    processing_time_start = time.time()
     recv_count = 0
 
     while True:
@@ -170,7 +170,7 @@ def multi_core_slave_processor_task(comm, hash_tag_count, language_summary_dict,
         recv_count += 1
         processing_data(local_preprocessed_line, hash_tag_count, language_summary_dict)
 
-    dump_time(comm_rank, "processing", datetime.now() - processing_time_start)
+    dump_time(comm_rank, "processing", time.time() - processing_time_start)
     print("processor #{} recv {} lines.".format(comm_rank, recv_count))
 
 
