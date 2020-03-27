@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #SBATCH --account=COMP90024
-#SBATCH --partition=physical
-#SBATCH --output=2node8core-physical.txt
-#SBATCH --nodes=2
-#SBATCH --ntasks-per-node=4
+#SBATCH --partition=snowy
+#SBATCH --output=1node1core-snowy.txt
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
 #SBATCH --mail-user=xuliny@student.unimelb.edu.au
 #SBATCH --mail-type=End
 #SBATCH --time=1-0:0:00
