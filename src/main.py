@@ -70,8 +70,9 @@ def main(country_code_file_path, twitter_data_path):
         # 1) merge Counter from each processor
         reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
         reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
-        reduced_hash_tag_count = reduced_hash_tag_count.most_common(n)
-        reduced_language_code_count = reduced_language_code_count.most_common(n)
+        if comm_rank == 0:
+            reduced_hash_tag_count = reduced_hash_tag_count.most_common(n)
+            reduced_language_code_count = reduced_language_code_count.most_common(n)
         # 2) split merged to each processor
         # if comm_rank == 0:
         #     split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
