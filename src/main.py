@@ -70,22 +70,23 @@ def main(country_code_file_path, twitter_data_path):
         # 1) merge Counter from each processor
         reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
         reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
-
+        reduced_hash_tag_count = reduced_hash_tag_count.most_common(n)
+        reduced_language_code_count = reduced_language_code_count.most_common(n)
         # 2) split merged to each processor
-        if comm_rank == 0:
-            split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
-            split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
-        else:
-            split_language_code_np_array = None
-            split_hash_tag_np_array = None
-
-        # 3) scatter merged to each processor
-        local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
-        local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
-
-        # 4) merge each processor's top n calculation result
-        reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
-        reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
+        # if comm_rank == 0:
+        #     split_language_code_np_array = np.array_split(list(reduced_language_code_count.items()), comm_size)
+        #     split_hash_tag_np_array = np.array_split(list(reduced_hash_tag_count.items()), comm_size)
+        # else:
+        #     split_language_code_np_array = None
+        #     split_hash_tag_np_array = None
+        #
+        # # 3) scatter merged to each processor
+        # local_language_code = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_language_code_np_array, root=0)))
+        # local_hash_tag = list(map(lambda x: (x[0], int(x[1])), comm.scatter(split_hash_tag_np_array, root=0)))
+        #
+        # # 4) merge each processor's top n calculation result
+        # reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
+        # reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
     # single processor calculating top n
     else:
         reduced_hash_tag_count = hash_tag_count.most_common(n)
