@@ -43,19 +43,30 @@ def main(country_code_file_path, twitter_data_path):
 
     # only one processor, no need to split data
     if comm_size == 1:
-        for line in read_data_line_by_line(twitter_data_path):
-            preprocessed_line = preprocess_data(line)
-            # the line is data
-            # line_count += 1
-            if preprocessed_line:
-                twitter_data = TwitterData(preprocessed_line)
+        n_lines = read_n_lines(twitter_data_path)
+        lines_per_core = n_lines // comm_size
+        lines_to_end = n_lines + 1  # ignore first line
+        line_to_start = 1 + lines_per_core * comm_rank  # ignore first line
+        line_to_end = line_to_start + lines_per_core
+        if comm_rank == comm_size - 1:  # last core to finish all remaining lines
+            line_to_end = lines_to_end
 
-                hash_tag_count += twitter_data.hash_tags
+        for line_number, line in enumerate(read_data_line_by_line(twitter_data_path)):  # ignore first line
+            if line_number == line_to_end:
+                break
+            if line_number >= line_to_start:
+                preprocessed_line = preprocess_data(line)
+                # the line is data
+                # line_count += 1
+                if preprocessed_line:
+                    twitter_data = TwitterData(preprocessed_line)
 
-                if twitter_data.language_code in language_code_count:
-                    language_code_count[twitter_data.language_code] += 1
-                else:
-                    language_code_count[twitter_data.language_code] = 1
+                    hash_tag_count += twitter_data.hash_tags
+
+                    if twitter_data.language_code in language_code_count:
+                        language_code_count[twitter_data.language_code] += 1
+                    else:
+                        language_code_count[twitter_data.language_code] = 1
 
         n = 10
         reduced_hash_tag_count = hash_tag_count.most_common(n)
