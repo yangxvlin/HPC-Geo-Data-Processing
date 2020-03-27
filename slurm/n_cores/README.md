@@ -1,2 +1,4 @@
 cd slurm/ncores
-sbatch 1nodencore.slurm > 1nodencore.out
+
+
+sbatch run.slurm > run.out

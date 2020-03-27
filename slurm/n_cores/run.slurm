@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --mail-user=xuliny@student.unimelb.edu.au
 #SBATCH --mail-type=End
+#SBATCH --output=run.txt
 
 for i in {1..72}
 do
