@@ -6,7 +6,7 @@
 for i in {1..72}
 do
    sbatch --output=1node${i}core-physical.txt --ntasks-per-node=${i} --partition=physical --nodes=1 "1nodencore.slurm"
-   sbatch --output=1node${i}core-cloud.txt --ntasks-per-node=${i} --partition=cloud --nodes=1 "1node${i}core.slurm"
+   sbatch --output=1node${i}core-cloud.txt --ntasks-per-node=${i} --partition=cloud --nodes=1 "1nodencore.slurm"
 done
 
 for i in {1..36}
