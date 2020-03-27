@@ -1,10 +1,6 @@
 #!/bin/bash
 
 #SBATCH --account=COMP90024
-#SBATCH --partition=physical
-#SBATCH --nodes=1
-#SBATCH --mail-user=xuliny@student.unimelb.edu.au
-#SBATCH --mail-type=End
 #SBATCH --time=1-0:0:00
 
 # Run the job from this directory:
