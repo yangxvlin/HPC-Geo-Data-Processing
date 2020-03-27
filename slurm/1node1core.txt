@@ -1,3 +1,1 @@
-srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-slurmstepd: error: *** STEP 15581615.0 ON spartan-bm044 CANCELLED AT 2020-03-26T20:20:02 ***
-slurmstepd: error: *** JOB 15581615 ON spartan-bm044 CANCELLED AT 2020-03-26T20:20:02 ***
+
