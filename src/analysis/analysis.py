@@ -13,7 +13,7 @@ DATA_FILE_TYPE = ".txt"
 IMAGE_TYPE = ".png"
 
 
-def read_physical_txt(file_path: str):
+def read_txt(file_path: str):
     run_time = None
     read_country_code_file_time = {}  # {#processor: time}
     process_time = {}
@@ -50,21 +50,21 @@ def draw_bar_chart(file_name: str):
     x = []
     y = []
     one_node_1_core_file_path = DATA_DIR + "1node1core-physical" + DATA_FILE_TYPE
-    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_physical_txt(one_node_1_core_file_path)
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(one_node_1_core_file_path)
     x.append("1 node 1 core")
     y.append(run_time)
 
     one_node_8_core_file_path = DATA_DIR + "1node8core-physical" + DATA_FILE_TYPE
-    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_physical_txt(one_node_8_core_file_path)
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(one_node_8_core_file_path)
     x.append("1 node 8 core")
     y.append(run_time)
 
     two_node_8_core_file_path = DATA_DIR + "2node8core-physical" + DATA_FILE_TYPE
-    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_physical_txt(two_node_8_core_file_path)
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(two_node_8_core_file_path)
     x.append("2 node 8 core")
     y.append(run_time)
 
-    plt.grid(True, axis='y')
+    plt.grid(True, axis='y', alpha=0.5)
     plt.bar(range(len(x)), y, tick_label=x)
     plt.title(file_name)
     plt.xlabel("Resources")
@@ -75,7 +75,53 @@ def draw_bar_chart(file_name: str):
     plt.show()
 
 
+def draw_bar_chart2(file_name: str):
+    name_list = []
+    y1 = []
+    y2 = []
+    one_node_8_core_file_path = DATA_DIR + "1node8core-physical" + DATA_FILE_TYPE
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(one_node_8_core_file_path)
+    name_list.append("1 node 8 core")
+    y1.append(run_time)
+
+    two_node_8_core_file_path = DATA_DIR + "2node8core-physical" + DATA_FILE_TYPE
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(two_node_8_core_file_path)
+    name_list.append("2 node 8 core")
+    y1.append(run_time)
+
+    one_node_8_core_file_path = DATA_DIR + "1node8core-cloud" + DATA_FILE_TYPE
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(one_node_8_core_file_path)
+    y2.append(run_time)
+
+    two_node_8_core_file_path = DATA_DIR + "2node8core-cloud" + DATA_FILE_TYPE
+    run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(two_node_8_core_file_path)
+    y2.append(run_time)
+
+    total_width, n = 0.5, 2
+    width = total_width / n
+
+    x = list(range(1, len(name_list)+1))
+
+    plt.grid(True, axis='y', alpha=0.5)
+    print(x, y1, y2)
+    plt.bar(x, y1, width=width, label='physical', fc='b', align="edge")
+    for i in range(len(x)):
+        x[i] = x[i] + width
+    print(x, y1, y2)
+    plt.bar(x, y2, width=width, label='cloud', tick_label=name_list, align="edge", fc='r')
+    plt.legend()
+    plt.title(file_name)
+    plt.xlabel("Resources")
+    plt.ylabel("second (s)")
+    for i, v in enumerate(y1):
+        plt.text(i+1.12 - 0.05, v + 5, round(y1[i], 2), fontsize=9, color='b')
+    for i, v in enumerate(y2):
+        plt.text(i+1.12 + width - 0.05, v + 5, round(y2[i], 2), fontsize=9, color='r')
+    plt.savefig(OUTPUT_DIR + file_name + IMAGE_TYPE)
+    plt.show()
+
+
 if __name__ == "__main__":
     draw_bar_chart("Performance Comparision")
-
+    draw_bar_chart2("1 node v.s. 2 node")
     pass
