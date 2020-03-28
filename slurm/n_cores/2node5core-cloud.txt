@@ -1,0 +1,75 @@
+===== processor #1 does processing data for 53.00237536430359(s) =====
+
+===== processor #1 does calculating top n for 214.64613890647888(s) =====
+
+===== processor #2 does processing data for 66.68473243713379(s) =====
+
+===== processor #2 does calculating top n for 200.96375250816345(s) =====
+
+===== processor #3 does processing data for 77.40096068382263(s) =====
+
+===== processor #3 does calculating top n for 190.24750995635986(s) =====
+
+===== processor #4 does processing data for 97.5753026008606(s) =====
+
+===== processor #4 does calculating top n for 170.06554913520813(s) =====
+
+===== processor #6 does processing data for 179.12642312049866(s) =====
+
+===== processor #6 does calculating top n for 88.54051208496094(s) =====
+
+===== processor #8 does processing data for 238.32637071609497(s) =====
+
+===== processor #8 does calculating top n for 29.34113121032715(s) =====
+
+========== runs with 10 processors ==========
+
+===== processor #0 does reading country code file for 0.002214670181274414(s) =====
+
+===== processor #0 does processing data for 42.62022161483765(s) =====
+
+===== processor #0 does calculating top n for 225.05907726287842(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 0.00012993812561035156(s) =====
+
+Programs runs 267.68183851242065(s)
+===== processor #7 does processing data for 210.51844549179077(s) =====
+
+===== processor #7 does calculating top n for 57.151368856430054(s) =====
+
+===== processor #5 does processing data for 144.73243069648743(s) =====
+
+===== processor #5 does calculating top n for 122.93802213668823(s) =====
+
+===== processor #9 does processing data for 266.7832064628601(s) =====
+
+===== processor #9 does calculating top n for 0.8876171112060547(s) =====
+
+
+real	4m28.539s
+user	0m0.025s
+sys	0m0.052s

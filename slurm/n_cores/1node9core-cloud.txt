@@ -1,0 +1,71 @@
+===== processor #7 does processing data for 355.94188046455383(s) =====
+
+===== processor #7 does calculating top n for 19.4545156955719(s) =====
+
+===== processor #1 does processing data for 97.03383231163025(s) =====
+
+===== processor #1 does calculating top n for 278.36428117752075(s) =====
+
+===== processor #2 does processing data for 142.91118264198303(s) =====
+
+===== processor #2 does calculating top n for 232.4879822731018(s) =====
+
+===== processor #3 does processing data for 197.069974899292(s) =====
+
+===== processor #3 does calculating top n for 178.32892060279846(s) =====
+
+===== processor #5 does processing data for 284.2763376235962(s) =====
+
+===== processor #5 does calculating top n for 91.1221399307251(s) =====
+
+===== processor #8 does processing data for 374.81383657455444(s) =====
+
+===== processor #8 does calculating top n for 0.5852127075195312(s) =====
+
+===== processor #4 does processing data for 236.70047783851624(s) =====
+
+===== processor #4 does calculating top n for 138.70379757881165(s) =====
+
+===== processor #6 does processing data for 341.72557187080383(s) =====
+
+===== processor #6 does calculating top n for 33.679160594940186(s) =====
+
+========== runs with 9 processors ==========
+
+===== processor #0 does reading country code file for 0.0014812946319580078(s) =====
+
+===== processor #0 does processing data for 50.616190910339355(s) =====
+
+===== processor #0 does calculating top n for 324.79100704193115(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 0.00011324882507324219(s) =====
+
+Programs runs 375.40895557403564(s)
+
+real	6m18.631s
+user	0m0.020s
+sys	0m0.052s

@@ -1,0 +1,43 @@
+===== processor #1 does processing data for 286.14264392852783(s) =====
+
+===== processor #1 does calculating top n for 1.2584707736968994(s) =====
+
+========== runs with 2 processors ==========
+
+===== processor #0 does reading country code file for 0.0009829998016357422(s) =====
+
+===== processor #0 does processing data for 212.67382335662842(s) =====
+
+===== processor #0 does calculating top n for 74.73085904121399(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 7.891654968261719e-05(s) =====
+
+Programs runs 287.4058916568756(s)
+
+real	4m50.058s
+user	0m0.026s
+sys	0m0.052s

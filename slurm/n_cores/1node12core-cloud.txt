@@ -1,0 +1,83 @@
+===== processor #3 does processing data for 66.140793800354(s) =====
+
+===== processor #3 does calculating top n for 77.95820379257202(s) =====
+
+===== processor #11 does processing data for 143.52182388305664(s) =====
+
+===== processor #11 does calculating top n for 0.5769057273864746(s) =====
+
+===== processor #2 does processing data for 57.890172243118286(s) =====
+
+===== processor #2 does calculating top n for 86.21016573905945(s) =====
+
+===== processor #4 does processing data for 75.65000343322754(s) =====
+
+===== processor #4 does calculating top n for 68.45031881332397(s) =====
+
+===== processor #5 does processing data for 87.60195422172546(s) =====
+
+===== processor #5 does calculating top n for 56.49852967262268(s) =====
+
+===== processor #6 does processing data for 94.51975989341736(s) =====
+
+===== processor #6 does calculating top n for 49.58069896697998(s) =====
+
+===== processor #7 does processing data for 105.15739679336548(s) =====
+
+===== processor #7 does calculating top n for 38.94302177429199(s) =====
+
+===== processor #10 does processing data for 134.04244375228882(s) =====
+
+===== processor #10 does calculating top n for 10.058873176574707(s) =====
+
+===== processor #8 does processing data for 114.51230239868164(s) =====
+
+===== processor #8 does calculating top n for 29.589568376541138(s) =====
+
+===== processor #9 does processing data for 123.49390697479248(s) =====
+
+===== processor #9 does calculating top n for 20.608171939849854(s) =====
+
+===== processor #1 does processing data for 46.39174461364746(s) =====
+
+===== processor #1 does calculating top n for 97.7108850479126(s) =====
+
+========== runs with 12 processors ==========
+
+===== processor #0 does reading country code file for 0.0006430149078369141(s) =====
+
+===== processor #0 does processing data for 37.93187236785889(s) =====
+
+===== processor #0 does calculating top n for 106.1748993396759(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 9.489059448242188e-05(s) =====
+
+Programs runs 144.10764288902283(s)
+
+real	2m24.848s
+user	0m0.017s
+sys	0m0.048s

@@ -1,0 +1,83 @@
+===== processor #1 does processing data for 42.44743084907532(s) =====
+
+===== processor #1 does calculating top n for 196.61293840408325(s) =====
+
+===== processor #2 does processing data for 53.232120990753174(s) =====
+
+===== processor #2 does calculating top n for 185.8312087059021(s) =====
+
+===== processor #3 does processing data for 60.77461528778076(s) =====
+
+===== processor #3 does calculating top n for 178.28812646865845(s) =====
+
+===== processor #5 does processing data for 82.08711814880371(s) =====
+
+===== processor #5 does calculating top n for 156.97579264640808(s) =====
+
+===== processor #4 does processing data for 70.06784296035767(s) =====
+
+===== processor #4 does calculating top n for 168.99526739120483(s) =====
+
+===== processor #7 does processing data for 150.1198046207428(s) =====
+
+===== processor #7 does calculating top n for 88.96758723258972(s) =====
+
+===== processor #9 does processing data for 202.49813532829285(s) =====
+
+===== processor #9 does calculating top n for 36.60232329368591(s) =====
+
+===== processor #8 does processing data for 177.99810481071472(s) =====
+
+===== processor #8 does calculating top n for 61.1021990776062(s) =====
+
+===== processor #10 does processing data for 228.4499397277832(s) =====
+
+===== processor #10 does calculating top n for 10.657104253768921(s) =====
+
+========== runs with 12 processors ==========
+
+===== processor #0 does reading country code file for 0.0010771751403808594(s) =====
+
+===== processor #0 does processing data for 37.39984607696533(s) =====
+
+===== processor #0 does calculating top n for 201.71118068695068(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 8.249282836914062e-05(s) =====
+
+Programs runs 239.112300157547(s)
+===== processor #6 does processing data for 124.90764737129211(s) =====
+
+===== processor #6 does calculating top n for 114.19957065582275(s) =====
+
+===== processor #11 does processing data for 238.45202493667603(s) =====
+
+===== processor #11 does calculating top n for 0.6551144123077393(s) =====
+
+
+real	3m59.844s
+user	0m0.021s
+sys	0m0.045s
