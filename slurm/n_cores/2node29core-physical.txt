@@ -1,0 +1,267 @@
+===== processor #1 does processing data for 9.73220419883728(s) =====
+
+===== processor #1 does calculating top n for 102.71568369865417(s) =====
+
+===== processor #2 does processing data for 11.987763404846191(s) =====
+
+===== processor #2 does calculating top n for 100.46201276779175(s) =====
+
+===== processor #3 does processing data for 13.628156423568726(s) =====
+
+===== processor #3 does calculating top n for 98.82147669792175(s) =====
+
+===== processor #4 does processing data for 16.332297801971436(s) =====
+
+===== processor #4 does calculating top n for 96.11758708953857(s) =====
+
+===== processor #5 does processing data for 18.573960542678833(s) =====
+
+===== processor #5 does calculating top n for 93.8752076625824(s) =====
+
+===== processor #6 does processing data for 20.41697669029236(s) =====
+
+===== processor #6 does calculating top n for 92.03268814086914(s) =====
+
+===== processor #7 does processing data for 22.562843561172485(s) =====
+
+===== processor #7 does calculating top n for 89.8865897655487(s) =====
+
+===== processor #8 does processing data for 26.452072620391846(s) =====
+
+===== processor #8 does calculating top n for 85.99803709983826(s) =====
+
+===== processor #9 does processing data for 26.64201855659485(s) =====
+
+===== processor #9 does calculating top n for 85.80697178840637(s) =====
+
+===== processor #10 does processing data for 28.26672887802124(s) =====
+
+===== processor #10 does calculating top n for 84.18318438529968(s) =====
+
+===== processor #11 does processing data for 30.825368642807007(s) =====
+
+===== processor #11 does calculating top n for 81.62394738197327(s) =====
+
+===== processor #12 does processing data for 33.25629115104675(s) =====
+
+===== processor #12 does calculating top n for 79.19336295127869(s) =====
+
+===== processor #13 does processing data for 34.171610832214355(s) =====
+
+===== processor #13 does calculating top n for 78.27811884880066(s) =====
+
+===== processor #14 does processing data for 36.06377077102661(s) =====
+
+===== processor #14 does calculating top n for 76.38597130775452(s) =====
+
+===== processor #15 does processing data for 37.8832049369812(s) =====
+
+===== processor #15 does calculating top n for 74.56655025482178(s) =====
+
+===== processor #17 does processing data for 44.50080347061157(s) =====
+
+===== processor #17 does calculating top n for 67.94878721237183(s) =====
+
+===== processor #21 does processing data for 49.84464740753174(s) =====
+
+===== processor #21 does calculating top n for 62.604822397232056(s) =====
+
+===== processor #22 does processing data for 50.192994594573975(s) =====
+
+===== processor #22 does calculating top n for 62.256444692611694(s) =====
+
+===== processor #23 does processing data for 51.810614347457886(s) =====
+
+===== processor #23 does calculating top n for 60.63882613182068(s) =====
+
+===== processor #25 does processing data for 56.11662459373474(s) =====
+
+===== processor #25 does calculating top n for 56.33265709877014(s) =====
+
+===== processor #26 does processing data for 57.8590407371521(s) =====
+
+===== processor #26 does calculating top n for 54.59055757522583(s) =====
+
+===== processor #27 does processing data for 60.24245762825012(s) =====
+
+===== processor #27 does calculating top n for 52.20746731758118(s) =====
+
+===== processor #18 does processing data for 45.018269062042236(s) =====
+
+===== processor #18 does calculating top n for 67.43146395683289(s) =====
+
+===== processor #19 does processing data for 47.860424280166626(s) =====
+
+===== processor #19 does calculating top n for 64.5891900062561(s) =====
+
+===== processor #20 does processing data for 48.99678897857666(s) =====
+
+===== processor #20 does calculating top n for 63.452969789505005(s) =====
+
+===== processor #16 does processing data for 39.2549843788147(s) =====
+
+===== processor #16 does calculating top n for 73.19890570640564(s) =====
+
+===== processor #24 does processing data for 53.85129380226135(s) =====
+
+===== processor #24 does calculating top n for 58.602426290512085(s) =====
+
+===== processor #28 does processing data for 61.9195237159729(s) =====
+
+===== processor #28 does calculating top n for 50.53403115272522(s) =====
+
+===== processor #29 does processing data for 64.45805716514587(s) =====
+
+===== processor #29 does calculating top n for 47.99467444419861(s) =====
+
+===== processor #30 does processing data for 66.66564917564392(s) =====
+
+===== processor #30 does calculating top n for 45.785910844802856(s) =====
+
+===== processor #31 does processing data for 68.20745038986206(s) =====
+
+===== processor #31 does calculating top n for 44.24323630332947(s) =====
+
+===== processor #32 does processing data for 69.99663758277893(s) =====
+
+===== processor #32 does calculating top n for 42.45668053627014(s) =====
+
+===== processor #33 does processing data for 71.98407864570618(s) =====
+
+===== processor #33 does calculating top n for 40.46820139884949(s) =====
+
+===== processor #34 does processing data for 73.99738049507141(s) =====
+
+===== processor #34 does calculating top n for 38.45538687705994(s) =====
+
+===== processor #35 does processing data for 75.6497848033905(s) =====
+
+===== processor #35 does calculating top n for 36.802743911743164(s) =====
+
+===== processor #36 does processing data for 76.97655844688416(s) =====
+
+===== processor #36 does calculating top n for 35.47642421722412(s) =====
+
+===== processor #37 does processing data for 78.95182943344116(s) =====
+
+===== processor #37 does calculating top n for 33.50072407722473(s) =====
+
+===== processor #38 does processing data for 81.22438454627991(s) =====
+
+===== processor #38 does calculating top n for 31.22834801673889(s) =====
+
+===== processor #39 does processing data for 82.38639688491821(s) =====
+
+===== processor #39 does calculating top n for 30.066548109054565(s) =====
+
+========== runs with 58 processors ==========
+
+===== processor #0 does reading country code file for 0.0005824565887451172(s) =====
+
+===== processor #0 does processing data for 6.943124294281006(s) =====
+
+===== processor #0 does calculating top n for 105.51781725883484(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 8.893013000488281e-05(s) =====
+
+Programs runs 112.46173429489136(s)
+===== processor #40 does processing data for 83.93485522270203(s) =====
+
+===== processor #40 does calculating top n for 28.51811981201172(s) =====
+
+===== processor #41 does processing data for 85.67361330986023(s) =====
+
+===== processor #41 does calculating top n for 26.779332399368286(s) =====
+
+===== processor #42 does processing data for 87.18062949180603(s) =====
+
+===== processor #42 does calculating top n for 25.27195978164673(s) =====
+
+===== processor #43 does processing data for 88.71789860725403(s) =====
+
+===== processor #43 does calculating top n for 23.734432458877563(s) =====
+
+===== processor #44 does processing data for 90.28036999702454(s) =====
+
+===== processor #44 does calculating top n for 22.172839403152466(s) =====
+
+===== processor #45 does processing data for 92.03217554092407(s) =====
+
+===== processor #45 does calculating top n for 20.420547246932983(s) =====
+
+===== processor #46 does processing data for 93.63312220573425(s) =====
+
+===== processor #46 does calculating top n for 18.819865465164185(s) =====
+
+===== processor #47 does processing data for 97.07099652290344(s) =====
+
+===== processor #47 does calculating top n for 15.381884813308716(s) =====
+
+===== processor #48 does processing data for 97.15089225769043(s) =====
+
+===== processor #48 does calculating top n for 15.302428245544434(s) =====
+
+===== processor #49 does processing data for 98.77943229675293(s) =====
+
+===== processor #49 does calculating top n for 13.673619270324707(s) =====
+
+===== processor #50 does processing data for 99.96446561813354(s) =====
+
+===== processor #50 does calculating top n for 12.488069534301758(s) =====
+
+===== processor #51 does processing data for 101.39789366722107(s) =====
+
+===== processor #51 does calculating top n for 11.05465292930603(s) =====
+
+===== processor #52 does processing data for 103.30146265029907(s) =====
+
+===== processor #52 does calculating top n for 9.15209150314331(s) =====
+
+===== processor #53 does processing data for 104.96971893310547(s) =====
+
+===== processor #53 does calculating top n for 7.4836344718933105(s) =====
+
+===== processor #54 does processing data for 106.37299275398254(s) =====
+
+===== processor #54 does calculating top n for 6.080244302749634(s) =====
+
+===== processor #55 does processing data for 108.14312934875488(s) =====
+
+===== processor #55 does calculating top n for 4.310297727584839(s) =====
+
+===== processor #56 does processing data for 109.53533673286438(s) =====
+
+===== processor #56 does calculating top n for 2.9177439212799072(s) =====
+
+===== processor #57 does processing data for 110.94944858551025(s) =====
+
+===== processor #57 does calculating top n for 1.5039098262786865(s) =====
+
+
+real	1m53.849s
+user	0m0.021s
+sys	0m0.033s
