@@ -33,27 +33,30 @@ def main(country_code_file_path, twitter_data_path):
     # read country_code in master process
     if comm_rank == 0:
         dump_num_processor(comm_size)
-        # the starting timestamp
-        tmp_start = time.time()
         # read country_code info and broad cast
         language_code_dict = read_language_code_dict(country_code_file_path)
-        dump_time(comm_rank, "reading country code file", time.time() - tmp_start)
 
     # counting hash_tag
     hash_tag_count = Counter()
     language_code_count = Counter()
 
+    # **********************************************************************************************
+    #                      Algorithm 1: parallel twitter file reading & processing
+    # **********************************************************************************************
+
     # calculating number of lines of data to be processed, line to start, line to end
-    tmp_start = time.time()
     n_lines = comm.bcast(read_n_lines(twitter_data_path), root=0)
     lines_per_core = n_lines // comm_size
+    # the total number of line to be read by the processor
     lines_to_end = n_lines + 1  # ignore first line
+    # the index of the first line to be processed by the processor
     line_to_start = 1 + lines_per_core * comm_rank  # ignore first line
+    # the index of the last line to be processed by the processor
     line_to_end = line_to_start + lines_per_core
     if comm_rank == comm_size - 1:  # last core to finish all remaining lines
         line_to_end = lines_to_end
 
-    # processing lines in specified range
+    # processing lines in specified range: line_to_start <= line_number <= line_to_end
     for line_number, line in enumerate(read_data_line_by_line(twitter_data_path)):  # ignore first line
         if line_number == line_to_end:
             break
@@ -61,11 +64,12 @@ def main(country_code_file_path, twitter_data_path):
             preprocessed_line = preprocess_data(line)
             if preprocessed_line:
                 processing_data(preprocessed_line, hash_tag_count, language_code_count)
-    dump_time(comm_rank, "processing data", time.time() - tmp_start)
 
+    # **********************************************************************************************
+    #                      Algorithm 2: parallel top-n calculation
+    # **********************************************************************************************
     n = 10
-    tmp_start = time.time()
-    # concurrent calculating top n hash_tags, languages used
+    # a) concurrent calculating top n hash_tags, languages used
     if comm_size > 1:
         # 1) merge Counter from each processor
         reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
@@ -85,21 +89,17 @@ def main(country_code_file_path, twitter_data_path):
         # 4) merge each processor's top n calculation result
         reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
         reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
-    # single processor calculating top n
+    # b) single processor calculating top n
     else:
         reduced_hash_tag_count = hash_tag_count.most_common(n)
         reduced_language_code_count = language_code_count.most_common(n)
-    dump_time(comm_rank, "calculating top n", time.time() - tmp_start)
 
     # output summary in root process
     if comm_rank == 0:
-        dumping_time_start = time.time()
         dump_hash_tag_output(reduced_hash_tag_count)
         dump_country_code_output(reduced_language_code_count, language_code_dict)
 
-        end = time.time()
-        dump_time(comm_rank, "dumping output", end - dumping_time_start)
-        program_run_time = end - program_start
+        program_run_time = time.time() - program_start
         print("Programs runs {}(s)".format(program_run_time))
 
 

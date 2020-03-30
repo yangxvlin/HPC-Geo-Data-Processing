@@ -121,7 +121,71 @@ def draw_bar_chart2(file_name: str):
     plt.show()
 
 
+def draw_line_diagram(file_name: str):
+    x1 = []
+    x2 = []
+    x3 = []
+    x4 = []
+    y1 = []
+    y2 = []
+    y3 = []
+    y4 = []
+
+    data_dir = DATA_DIR + "n_cores/"
+    for i in range(1, 24+1):
+        n_cores = i
+        data_file_name = data_dir+"1node"+str(n_cores)+"core-physical"+DATA_FILE_TYPE
+        run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(data_file_name)
+        x1.append(i)
+        y1.append(run_time)
+
+    for i in range(1, 12+1):
+        n_cores = i
+        data_file_name = data_dir+"1node"+str(n_cores)+"core-cloud"+DATA_FILE_TYPE
+        run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(data_file_name)
+        x2.append(i)
+        y2.append(run_time)
+
+    for i in range(1, 12+1):
+        n_cores = i
+        data_file_name = data_dir+"2node"+str(n_cores)+"core-physical"+DATA_FILE_TYPE
+        run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(data_file_name)
+        x3.append(i*2)
+        y3.append(run_time)
+
+    for i in range(1, 12+1):
+        n_cores = i
+        data_file_name = data_dir+"2node"+str(n_cores)+"core-cloud"+DATA_FILE_TYPE
+        run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(data_file_name)
+        x4.append(i*2)
+        y4.append(run_time)
+
+    plt.plot(x1, y1, 'r*-', x2, y2, 'b*-', x3, y3, '+-', x4, y4, '+-')
+    plt.title(file_name)
+    plt.xlabel("Number of cores")
+    plt.ylabel("Second (s)")
+    plt.legend(["1node-physics", "1node-cloud", "2node-physics", "2node-cloud"])
+    plt.show()
+
+    y1_0 = y1[0]
+    y1 = [1] + list(map(lambda x: x / y1_0, y1[1:]))
+    y2_0 = y2[0]
+    y2 = [1] + list(map(lambda x: x / y2_0, y2[1:]))
+    y3_0 = y3[0]
+    y3 = [1] + list(map(lambda x: x / y3_0, y3[1:]))
+    y4_0 = y4[0]
+    y4 = [1] + list(map(lambda x: x / y4_0, y4[1:]))
+
+    plt.plot(x1, y1, 'r*-', x2, y2, 'b*-', x3, y3, '+-', x4, y4, '+-')
+    plt.title("Parallel optimization rate")
+    plt.xlabel("Number of cores")
+    plt.ylabel("Second (s) / base execution time")
+    plt.legend(["1node-physics", "1node-cloud", "2node-physics", "2node-cloud"])
+    plt.show()
+
+
 if __name__ == "__main__":
-    draw_bar_chart("Performance Comparision")
-    draw_bar_chart2("1 node v.s. 2 node")
+    # draw_bar_chart("Performance Comparision")
+    # draw_bar_chart2("1 node v.s. 2 node")
+    draw_line_diagram("Performance")
     pass
