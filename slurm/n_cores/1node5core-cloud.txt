@@ -1,26 +1,26 @@
-===== processor #2 does processing data for 222.39132642745972(s) =====
+===== processor #2 does processing data for 157.0884108543396(s) =====
 
-===== processor #2 does calculating top n for 88.80633902549744(s) =====
+===== processor #2 does calculating top n for 55.662285566329956(s) =====
 
-===== processor #4 does processing data for 310.5328483581543(s) =====
+===== processor #3 does processing data for 183.68927931785583(s) =====
 
-===== processor #4 does calculating top n for 0.6656057834625244(s) =====
+===== processor #3 does calculating top n for 29.061974048614502(s) =====
 
-===== processor #1 does processing data for 167.65415906906128(s) =====
+===== processor #1 does processing data for 129.15594911575317(s) =====
 
-===== processor #1 does calculating top n for 143.54637241363525(s) =====
+===== processor #1 does calculating top n for 83.59726691246033(s) =====
 
-===== processor #3 does processing data for 265.1226313114166(s) =====
+===== processor #4 does processing data for 212.33030319213867(s) =====
 
-===== processor #3 does calculating top n for 46.08917856216431(s) =====
+===== processor #4 does calculating top n for 0.42263054847717285(s) =====
 
 ========== runs with 5 processors ==========
 
-===== processor #0 does reading country code file for 0.001378774642944336(s) =====
+===== processor #0 does reading country code file for 0.0010960102081298828(s) =====
 
-===== processor #0 does processing data for 107.97517728805542(s) =====
+===== processor #0 does processing data for 96.2984619140625(s) =====
 
-===== processor #0 does calculating top n for 203.23901104927063(s) =====
+===== processor #0 does calculating top n for 116.4579746723175(s) =====
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -46,10 +46,10 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 0.00010228157043457031(s) =====
+===== processor #0 does dumping output for 9.751319885253906e-05(s) =====
 
-Programs runs 311.21583223342896(s)
+Programs runs 212.75775909423828(s)
 
-real	5m12.879s
-user	0m0.035s
-sys	0m0.082s
+real	3m34.222s
+user	0m0.032s
+sys	0m0.054s

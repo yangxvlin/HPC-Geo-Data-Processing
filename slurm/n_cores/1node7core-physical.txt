@@ -1,0 +1,63 @@
+===== processor #1 does processing data for 94.68651962280273(s) =====
+
+===== processor #1 does calculating top n for 84.38366413116455(s) =====
+
+===== processor #2 does processing data for 116.86551213264465(s) =====
+
+===== processor #2 does calculating top n for 62.204145431518555(s) =====
+
+===== processor #3 does processing data for 135.89416074752808(s) =====
+
+===== processor #3 does calculating top n for 43.175705909729004(s) =====
+
+===== processor #4 does processing data for 151.25560116767883(s) =====
+
+===== processor #4 does calculating top n for 27.8144428730011(s) =====
+
+===== processor #5 does processing data for 164.73149132728577(s) =====
+
+===== processor #5 does calculating top n for 14.338514566421509(s) =====
+
+===== processor #6 does processing data for 178.69112849235535(s) =====
+
+===== processor #6 does calculating top n for 0.3785116672515869(s) =====
+
+========== runs with 7 processors ==========
+
+===== processor #0 does reading country code file for 0.0003094673156738281(s) =====
+
+===== processor #0 does processing data for 68.97075247764587(s) =====
+
+===== processor #0 does calculating top n for 110.1033353805542(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 8.368492126464844e-05(s) =====
+
+Programs runs 179.07458519935608(s)
+
+real	2m59.490s
+user	0m0.017s
+sys	0m0.024s

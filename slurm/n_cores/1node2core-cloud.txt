@@ -1,14 +1,14 @@
-===== processor #1 does processing data for 286.14264392852783(s) =====
+===== processor #1 does processing data for 316.7689607143402(s) =====
 
-===== processor #1 does calculating top n for 1.2584707736968994(s) =====
+===== processor #1 does calculating top n for 1.2538979053497314(s) =====
 
 ========== runs with 2 processors ==========
 
-===== processor #0 does reading country code file for 0.0009829998016357422(s) =====
+===== processor #0 does reading country code file for 0.0012145042419433594(s) =====
 
-===== processor #0 does processing data for 212.67382335662842(s) =====
+===== processor #0 does processing data for 248.50261735916138(s) =====
 
-===== processor #0 does calculating top n for 74.73085904121399(s) =====
+===== processor #0 does calculating top n for 69.52289032936096(s) =====
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -34,10 +34,10 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 7.891654968261719e-05(s) =====
+===== processor #0 does dumping output for 0.00010395050048828125(s) =====
 
-Programs runs 287.4058916568756(s)
+Programs runs 318.0271031856537(s)
 
-real	4m50.058s
-user	0m0.026s
-sys	0m0.052s
+real	5m19.112s
+user	0m0.027s
+sys	0m0.043s

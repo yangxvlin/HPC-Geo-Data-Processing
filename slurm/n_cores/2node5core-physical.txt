@@ -1,0 +1,75 @@
+===== processor #1 does processing data for 81.80337190628052(s) =====
+
+===== processor #1 does calculating top n for 84.38439011573792(s) =====
+
+===== processor #2 does processing data for 111.66075611114502(s) =====
+
+===== processor #2 does calculating top n for 54.52772927284241(s) =====
+
+===== processor #6 does processing data for 97.34555149078369(s) =====
+
+===== processor #6 does calculating top n for 68.83746814727783(s) =====
+
+===== processor #3 does processing data for 137.86466765403748(s) =====
+
+===== processor #3 does calculating top n for 28.323267698287964(s) =====
+
+===== processor #8 does processing data for 116.4157772064209(s) =====
+
+===== processor #8 does calculating top n for 49.76671838760376(s) =====
+
+===== processor #4 does processing data for 165.77862191200256(s) =====
+
+===== processor #4 does calculating top n for 0.40910768508911133(s) =====
+
+===== processor #5 does processing data for 86.94571423530579(s) =====
+
+===== processor #5 does calculating top n for 79.23794841766357(s) =====
+
+========== runs with 10 processors ==========
+
+===== processor #0 does reading country code file for 0.0008790493011474609(s) =====
+
+===== processor #0 does processing data for 55.70147395133972(s) =====
+
+===== processor #0 does calculating top n for 110.49422860145569(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 7.200241088867188e-05(s) =====
+
+Programs runs 166.19675493240356(s)
+===== processor #7 does processing data for 106.78822731971741(s) =====
+
+===== processor #7 does calculating top n for 59.39562273025513(s) =====
+
+===== processor #9 does processing data for 128.15486454963684(s) =====
+
+===== processor #9 does calculating top n for 38.02946400642395(s) =====
+
+
+real	2m47.324s
+user	0m0.020s
+sys	0m0.030s

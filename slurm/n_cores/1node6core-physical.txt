@@ -1,0 +1,59 @@
+===== processor #1 does processing data for 76.95365643501282(s) =====
+
+===== processor #1 does calculating top n for 62.250513315200806(s) =====
+
+===== processor #2 does processing data for 92.96637201309204(s) =====
+
+===== processor #2 does calculating top n for 46.2383496761322(s) =====
+
+===== processor #3 does processing data for 108.37166333198547(s) =====
+
+===== processor #3 does calculating top n for 30.833118677139282(s) =====
+
+===== processor #4 does processing data for 121.78735303878784(s) =====
+
+===== processor #4 does calculating top n for 17.41747236251831(s) =====
+
+===== processor #5 does processing data for 138.84020018577576(s) =====
+
+===== processor #5 does calculating top n for 0.3644719123840332(s) =====
+
+========== runs with 6 processors ==========
+
+===== processor #0 does reading country code file for 0.0002720355987548828(s) =====
+
+===== processor #0 does processing data for 60.15494680404663(s) =====
+
+===== processor #0 does calculating top n for 79.05337381362915(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 7.534027099609375e-05(s) =====
+
+Programs runs 139.20875072479248(s)
+
+real	2m19.752s
+user	0m0.019s
+sys	0m0.029s

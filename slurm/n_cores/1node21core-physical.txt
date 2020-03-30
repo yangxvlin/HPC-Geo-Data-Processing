@@ -1,0 +1,119 @@
+===== processor #20 does processing data for 166.53197145462036(s) =====
+
+===== processor #20 does calculating top n for 0.6592268943786621(s) =====
+
+===== processor #11 does processing data for 122.22457480430603(s) =====
+
+===== processor #11 does calculating top n for 44.96753716468811(s) =====
+
+===== processor #1 does processing data for 34.27124738693237(s) =====
+
+===== processor #1 does calculating top n for 132.9217803478241(s) =====
+
+===== processor #2 does processing data for 44.36907720565796(s) =====
+
+===== processor #2 does calculating top n for 122.82397103309631(s) =====
+
+===== processor #3 does processing data for 53.23356366157532(s) =====
+
+===== processor #3 does calculating top n for 113.95843839645386(s) =====
+
+===== processor #6 does processing data for 80.30069613456726(s) =====
+
+===== processor #6 does calculating top n for 86.89171028137207(s) =====
+
+===== processor #7 does processing data for 89.24282503128052(s) =====
+
+===== processor #7 does calculating top n for 77.9494731426239(s) =====
+
+===== processor #9 does processing data for 107.16285967826843(s) =====
+
+===== processor #9 does calculating top n for 60.029496908187866(s) =====
+
+===== processor #10 does processing data for 113.72498369216919(s) =====
+
+===== processor #10 does calculating top n for 53.467963457107544(s) =====
+
+===== processor #13 does processing data for 133.21108293533325(s) =====
+
+===== processor #13 does calculating top n for 33.981226682662964(s) =====
+
+===== processor #14 does processing data for 138.19138956069946(s) =====
+
+===== processor #14 does calculating top n for 29.000909090042114(s) =====
+
+===== processor #15 does processing data for 142.8796558380127(s) =====
+
+===== processor #15 does calculating top n for 24.31276512145996(s) =====
+
+===== processor #18 does processing data for 158.9089753627777(s) =====
+
+===== processor #18 does calculating top n for 8.282880067825317(s) =====
+
+===== processor #19 does processing data for 162.1750066280365(s) =====
+
+===== processor #19 does calculating top n for 5.01779317855835(s) =====
+
+===== processor #12 does processing data for 127.05635118484497(s) =====
+
+===== processor #12 does calculating top n for 40.136728286743164(s) =====
+
+===== processor #16 does processing data for 147.74852967262268(s) =====
+
+===== processor #16 does calculating top n for 19.44408679008484(s) =====
+
+===== processor #17 does processing data for 152.93341994285583(s) =====
+
+===== processor #17 does calculating top n for 14.258930921554565(s) =====
+
+===== processor #8 does processing data for 97.80700993537903(s) =====
+
+===== processor #8 does calculating top n for 69.38580965995789(s) =====
+
+===== processor #4 does processing data for 64.22456192970276(s) =====
+
+===== processor #4 does calculating top n for 102.96844601631165(s) =====
+
+===== processor #5 does processing data for 71.75650572776794(s) =====
+
+===== processor #5 does calculating top n for 95.43672180175781(s) =====
+
+========== runs with 21 processors ==========
+
+===== processor #0 does reading country code file for 0.0009236335754394531(s) =====
+
+===== processor #0 does processing data for 24.247066974639893(s) =====
+
+===== processor #0 does calculating top n for 142.94937419891357(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 7.534027099609375e-05(s) =====
+
+Programs runs 167.19752979278564(s)
+
+real	2m47.865s
+user	0m0.018s
+sys	0m0.028s

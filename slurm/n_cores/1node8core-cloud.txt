@@ -1,38 +1,14 @@
-===== processor #7 does processing data for 217.24337697029114(s) =====
+===== processor #5 does processing data for 219.6734173297882(s) =====
 
-===== processor #7 does calculating top n for 0.624880313873291(s) =====
-
-===== processor #6 does processing data for 194.22376942634583(s) =====
-
-===== processor #6 does calculating top n for 23.644570112228394(s) =====
-
-===== processor #4 does processing data for 147.21220016479492(s) =====
-
-===== processor #4 does calculating top n for 70.657639503479(s) =====
-
-===== processor #5 does processing data for 174.05562782287598(s) =====
-
-===== processor #5 does calculating top n for 43.81379270553589(s) =====
-
-===== processor #2 does processing data for 103.47478127479553(s) =====
-
-===== processor #2 does calculating top n for 114.3971540927887(s) =====
-
-===== processor #3 does processing data for 126.9059488773346(s) =====
-
-===== processor #3 does calculating top n for 90.96596813201904(s) =====
-
-===== processor #1 does processing data for 81.61895656585693(s) =====
-
-===== processor #1 does calculating top n for 136.25366020202637(s) =====
+===== processor #5 does calculating top n for 61.212275981903076(s) =====
 
 ========== runs with 8 processors ==========
 
-===== processor #0 does reading country code file for 0.001455545425415039(s) =====
+===== processor #0 does reading country code file for 0.0013797283172607422(s) =====
 
-===== processor #0 does processing data for 58.44138741493225(s) =====
+===== processor #0 does processing data for 51.33211088180542(s) =====
 
-===== processor #0 does calculating top n for 159.4338481426239(s) =====
+===== processor #0 does calculating top n for 229.5586862564087(s) =====
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -58,10 +34,34 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 0.00010728836059570312(s) =====
+===== processor #0 does dumping output for 9.441375732421875e-05(s) =====
 
-Programs runs 217.87695240974426(s)
+Programs runs 280.8924398422241(s)
+===== processor #1 does processing data for 88.4285478591919(s) =====
 
-real	3m41.144s
-user	0m0.032s
-sys	0m0.050s
+===== processor #1 does calculating top n for 192.45885968208313(s) =====
+
+===== processor #2 does processing data for 123.95090341567993(s) =====
+
+===== processor #2 does calculating top n for 156.93788719177246(s) =====
+
+===== processor #3 does processing data for 154.760333776474(s) =====
+
+===== processor #3 does calculating top n for 126.12807130813599(s) =====
+
+===== processor #4 does processing data for 182.8045573234558(s) =====
+
+===== processor #4 does calculating top n for 98.08208870887756(s) =====
+
+===== processor #6 does processing data for 255.10476207733154(s) =====
+
+===== processor #6 does calculating top n for 25.78202509880066(s) =====
+
+===== processor #7 does processing data for 280.42435908317566(s) =====
+
+===== processor #7 does calculating top n for 0.46207571029663086(s) =====
+
+
+real	4m42.617s
+user	0m0.026s
+sys	0m0.062s

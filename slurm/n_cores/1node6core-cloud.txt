@@ -1,30 +1,30 @@
-===== processor #3 does processing data for 165.64423298835754(s) =====
+===== processor #1 does processing data for 111.75684857368469(s) =====
 
-===== processor #3 does calculating top n for 59.245532512664795(s) =====
+===== processor #1 does calculating top n for 107.20113706588745(s) =====
 
-===== processor #1 does processing data for 113.00581216812134(s) =====
+===== processor #3 does processing data for 162.75759887695312(s) =====
 
-===== processor #1 does calculating top n for 111.88578987121582(s) =====
+===== processor #3 does calculating top n for 56.200554609298706(s) =====
 
-===== processor #2 does processing data for 140.77569770812988(s) =====
+===== processor #2 does processing data for 139.1824734210968(s) =====
 
-===== processor #2 does calculating top n for 84.11611127853394(s) =====
+===== processor #2 does calculating top n for 79.77727365493774(s) =====
 
-===== processor #4 does processing data for 191.6342418193817(s) =====
+===== processor #5 does processing data for 218.48468804359436(s) =====
 
-===== processor #4 does calculating top n for 33.258870363235474(s) =====
+===== processor #5 does calculating top n for 0.47505831718444824(s) =====
 
-===== processor #5 does processing data for 224.3184459209442(s) =====
+===== processor #4 does processing data for 199.73047637939453(s) =====
 
-===== processor #5 does calculating top n for 0.5740656852722168(s) =====
+===== processor #4 does calculating top n for 19.230729341506958(s) =====
 
 ========== runs with 6 processors ==========
 
-===== processor #0 does reading country code file for 0.0017781257629394531(s) =====
+===== processor #0 does reading country code file for 0.0009813308715820312(s) =====
 
-===== processor #0 does processing data for 84.08937811851501(s) =====
+===== processor #0 does processing data for 83.2467041015625(s) =====
 
-===== processor #0 does calculating top n for 140.80721855163574(s) =====
+===== processor #0 does calculating top n for 135.72023916244507(s) =====
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -50,10 +50,10 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 0.00010132789611816406(s) =====
+===== processor #0 does dumping output for 0.00011539459228515625(s) =====
 
-Programs runs 224.89864826202393(s)
+Programs runs 218.96821308135986(s)
 
-real	3m50.310s
-user	0m0.028s
-sys	0m0.067s
+real	3m40.478s
+user	0m0.027s
+sys	0m0.058s

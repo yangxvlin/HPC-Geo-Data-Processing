@@ -1,0 +1,91 @@
+===== processor #1 does processing data for 56.25356912612915(s) =====
+
+===== processor #1 does calculating top n for 189.30623030662537(s) =====
+
+===== processor #8 does processing data for 190.25795531272888(s) =====
+
+===== processor #8 does calculating top n for 55.3063485622406(s) =====
+
+===== processor #2 does processing data for 71.70956754684448(s) =====
+
+===== processor #2 does calculating top n for 173.85028743743896(s) =====
+
+===== processor #9 does processing data for 205.09721040725708(s) =====
+
+===== processor #9 does calculating top n for 40.46569561958313(s) =====
+
+===== processor #3 does processing data for 83.09484934806824(s) =====
+
+===== processor #3 does calculating top n for 162.46525311470032(s) =====
+
+===== processor #10 does processing data for 216.5762643814087(s) =====
+
+===== processor #10 does calculating top n for 28.98773741722107(s) =====
+
+===== processor #5 does processing data for 101.97034430503845(s) =====
+
+===== processor #5 does calculating top n for 143.59017062187195(s) =====
+
+===== processor #11 does processing data for 227.85953736305237(s) =====
+
+===== processor #11 does calculating top n for 17.704654932022095(s) =====
+
+===== processor #6 does processing data for 110.8947331905365(s) =====
+
+===== processor #6 does calculating top n for 134.6691746711731(s) =====
+
+===== processor #12 does processing data for 237.02379608154297(s) =====
+
+===== processor #12 does calculating top n for 8.54070496559143(s) =====
+
+===== processor #4 does processing data for 93.77788782119751(s) =====
+
+===== processor #4 does calculating top n for 151.78562450408936(s) =====
+
+===== processor #13 does processing data for 244.92656588554382(s) =====
+
+===== processor #13 does calculating top n for 0.6375515460968018(s) =====
+
+========== runs with 14 processors ==========
+
+===== processor #0 does reading country code file for 0.0004239082336425781(s) =====
+
+===== processor #0 does processing data for 39.33185577392578(s) =====
+
+===== processor #0 does calculating top n for 206.23521065711975(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 7.939338684082031e-05(s) =====
+
+Programs runs 245.56768202781677(s)
+===== processor #7 does processing data for 173.81088280677795(s) =====
+
+===== processor #7 does calculating top n for 71.7533347606659(s) =====
+
+
+real	4m6.371s
+user	0m0.020s
+sys	0m0.033s

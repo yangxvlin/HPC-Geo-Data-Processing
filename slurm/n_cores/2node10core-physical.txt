@@ -1,0 +1,115 @@
+===== processor #5 does processing data for 80.7719213962555(s) =====
+
+===== processor #5 does calculating top n for 158.6160933971405(s) =====
+
+===== processor #7 does processing data for 97.9225378036499(s) =====
+
+===== processor #7 does calculating top n for 141.46556043624878(s) =====
+
+===== processor #10 does processing data for 163.25761532783508(s) =====
+
+===== processor #10 does calculating top n for 76.13481903076172(s) =====
+
+===== processor #4 does processing data for 74.24648904800415(s) =====
+
+===== processor #4 does calculating top n for 165.14209580421448(s) =====
+
+===== processor #11 does processing data for 175.05491828918457(s) =====
+
+===== processor #11 does calculating top n for 64.33729720115662(s) =====
+
+===== processor #6 does processing data for 88.50058722496033(s) =====
+
+===== processor #6 does calculating top n for 150.88777804374695(s) =====
+
+===== processor #12 does processing data for 185.16092109680176(s) =====
+
+===== processor #12 does calculating top n for 54.23116421699524(s) =====
+
+===== processor #1 does processing data for 40.81900191307068(s) =====
+
+===== processor #1 does calculating top n for 198.56983184814453(s) =====
+
+===== processor #13 does processing data for 195.9755654335022(s) =====
+
+===== processor #13 does calculating top n for 43.415889263153076(s) =====
+
+===== processor #2 does processing data for 52.226601362228394(s) =====
+
+===== processor #2 does calculating top n for 187.1623706817627(s) =====
+
+===== processor #14 does processing data for 204.78617429733276(s) =====
+
+===== processor #14 does calculating top n for 34.605685234069824(s) =====
+
+===== processor #3 does processing data for 66.24535346031189(s) =====
+
+===== processor #3 does calculating top n for 173.14296627044678(s) =====
+
+===== processor #15 does processing data for 213.45725917816162(s) =====
+
+===== processor #15 does calculating top n for 25.934764623641968(s) =====
+
+===== processor #8 does processing data for 100.35853433609009(s) =====
+
+===== processor #8 does calculating top n for 139.03003334999084(s) =====
+
+===== processor #16 does processing data for 221.3976480960846(s) =====
+
+===== processor #16 does calculating top n for 17.99428367614746(s) =====
+
+===== processor #9 does processing data for 105.29856491088867(s) =====
+
+===== processor #9 does calculating top n for 134.09016633033752(s) =====
+
+===== processor #17 does processing data for 227.40275740623474(s) =====
+
+===== processor #17 does calculating top n for 11.989495515823364(s) =====
+
+========== runs with 20 processors ==========
+
+===== processor #0 does reading country code file for 0.00047707557678222656(s) =====
+
+===== processor #0 does processing data for 28.97194504737854(s) =====
+
+===== processor #0 does calculating top n for 210.4245035648346(s) =====
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 19,891
+ 2. #coronavirus             , 10,125
+ 3. #firefightaustralia      , 6,814
+ 4. #oldme                   , 6,419
+ 5. #sydney                  , 6,376
+ 6. #scottyfrommarketing     , 5,185
+ 7. #grammys                 , 5,085
+ 8. #assange                 , 4,689
+ 9. #sportsrorts             , 4,516
+10. #iheartawards            , 4,297
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 3,107,116
+ 2. undefined  (und), 252,117
+ 3. Thai       ( th), 134,571
+ 4. Portuguese ( pt), 125,858
+ 5. Spanish    ( es), 74,028
+ 6. Japanese   ( ja), 49,929
+ 7. Tagalog    ( tl), 44,560
+ 8. Indonesian ( in), 42,296
+ 9. French     ( fr), 38,098
+10. Arabic     ( ar), 24,501
+
+===== processor #0 does dumping output for 8.797645568847656e-05(s) =====
+
+Programs runs 239.3971462249756(s)
+===== processor #18 does processing data for 233.85282850265503(s) =====
+
+===== processor #18 does calculating top n for 5.539328336715698(s) =====
+
+===== processor #19 does processing data for 238.5626208782196(s) =====
+
+===== processor #19 does calculating top n for 0.8293771743774414(s) =====
+
+
+real	4m0.438s
+user	0m0.022s
+sys	0m0.031s

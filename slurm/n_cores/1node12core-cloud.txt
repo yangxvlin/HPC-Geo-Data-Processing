@@ -1,54 +1,54 @@
-===== processor #3 does processing data for 66.140793800354(s) =====
+===== processor #11 does processing data for 300.8317301273346(s) =====
 
-===== processor #3 does calculating top n for 77.95820379257202(s) =====
+===== processor #11 does calculating top n for 0.6064901351928711(s) =====
 
-===== processor #11 does processing data for 143.52182388305664(s) =====
+===== processor #3 does processing data for 112.27170920372009(s) =====
 
-===== processor #11 does calculating top n for 0.5769057273864746(s) =====
+===== processor #3 does calculating top n for 189.16763162612915(s) =====
 
-===== processor #2 does processing data for 57.890172243118286(s) =====
+===== processor #5 does processing data for 156.91844868659973(s) =====
 
-===== processor #2 does calculating top n for 86.21016573905945(s) =====
+===== processor #5 does calculating top n for 144.5211625099182(s) =====
 
-===== processor #4 does processing data for 75.65000343322754(s) =====
+===== processor #8 does processing data for 229.72719979286194(s) =====
 
-===== processor #4 does calculating top n for 68.45031881332397(s) =====
+===== processor #8 does calculating top n for 71.71271181106567(s) =====
 
-===== processor #5 does processing data for 87.60195422172546(s) =====
+===== processor #9 does processing data for 256.195787191391(s) =====
 
-===== processor #5 does calculating top n for 56.49852967262268(s) =====
+===== processor #9 does calculating top n for 45.243452310562134(s) =====
 
-===== processor #6 does processing data for 94.51975989341736(s) =====
+===== processor #10 does processing data for 282.4373393058777(s) =====
 
-===== processor #6 does calculating top n for 49.58069896697998(s) =====
+===== processor #10 does calculating top n for 19.002578735351562(s) =====
 
-===== processor #7 does processing data for 105.15739679336548(s) =====
+===== processor #1 does processing data for 62.725083112716675(s) =====
 
-===== processor #7 does calculating top n for 38.94302177429199(s) =====
+===== processor #1 does calculating top n for 238.7156367301941(s) =====
 
-===== processor #10 does processing data for 134.04244375228882(s) =====
+===== processor #2 does processing data for 90.5511224269867(s) =====
 
-===== processor #10 does calculating top n for 10.058873176574707(s) =====
+===== processor #2 does calculating top n for 210.8910849094391(s) =====
 
-===== processor #8 does processing data for 114.51230239868164(s) =====
+===== processor #4 does processing data for 132.91227626800537(s) =====
 
-===== processor #8 does calculating top n for 29.589568376541138(s) =====
+===== processor #4 does calculating top n for 168.53046441078186(s) =====
 
-===== processor #9 does processing data for 123.49390697479248(s) =====
+===== processor #6 does processing data for 180.02025508880615(s) =====
 
-===== processor #9 does calculating top n for 20.608171939849854(s) =====
+===== processor #6 does calculating top n for 121.42240619659424(s) =====
 
-===== processor #1 does processing data for 46.39174461364746(s) =====
+===== processor #7 does processing data for 205.51196765899658(s) =====
 
-===== processor #1 does calculating top n for 97.7108850479126(s) =====
+===== processor #7 does calculating top n for 95.930588722229(s) =====
 
 ========== runs with 12 processors ==========
 
-===== processor #0 does reading country code file for 0.0006430149078369141(s) =====
+===== processor #0 does reading country code file for 0.0014369487762451172(s) =====
 
-===== processor #0 does processing data for 37.93187236785889(s) =====
+===== processor #0 does processing data for 36.75311803817749(s) =====
 
-===== processor #0 does calculating top n for 106.1748993396759(s) =====
+===== processor #0 does calculating top n for 264.6921308040619(s) =====
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -74,10 +74,10 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 9.489059448242188e-05(s) =====
+===== processor #0 does dumping output for 9.369850158691406e-05(s) =====
 
-Programs runs 144.10764288902283(s)
+Programs runs 301.446900844574(s)
 
-real	2m24.848s
-user	0m0.017s
-sys	0m0.048s
+real	5m3.460s
+user	0m0.021s
+sys	0m0.060s
