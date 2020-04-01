@@ -84,7 +84,10 @@ def dump_country_code_output(reduced_language_code_count: list, language_code_di
     top_n_languages = reduced_language_code_count
     print(SEPARATOR, "top {} most commonly tweeted languages".format(len(top_n_languages)), SEPARATOR)
     for i, (language_code, count) in enumerate(top_n_languages, start=1):
-        print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))
+        try:
+            print("{:2d}. {: <10} ({: >3}), {:,}".format(i, language_code_dict[language_code], language_code, count))
+        except KeyError:
+            print("{:2d}. {: <10} ({: >3}), {:,}".format(i, "Unknown", language_code, count))
     print()
 
 
