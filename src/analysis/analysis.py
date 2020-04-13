@@ -64,6 +64,11 @@ def draw_bar_chart(file_name: str):
     x.append("2 node 8 core")
     y.append(run_time)
 
+    # two_node_8_core_file_path = DATA_DIR + "n_cores/1node16core-physical" + DATA_FILE_TYPE
+    # run_time, read_country_code_file_time, process_time, calculate_top_n_time = read_txt(two_node_8_core_file_path)
+    # x.append("1 node 16 core")
+    # y.append(run_time)
+
     plt.grid(True, axis='y', alpha=0.5)
     plt.bar(range(len(x)), y, tick_label=x)
     plt.title(file_name)
@@ -185,7 +190,7 @@ def draw_line_diagram(file_name: str):
 
 
 if __name__ == "__main__":
-    # draw_bar_chart("Performance Comparision")
+    draw_bar_chart("Performance Comparision")
     # draw_bar_chart2("1 node v.s. 2 node")
-    draw_line_diagram("Performance")
+    # draw_line_diagram("Performance")
     pass
