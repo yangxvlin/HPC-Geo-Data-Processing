@@ -22,8 +22,12 @@ COMP90024 Cluster and Cloud Computing - Assignment 1 - 2020S1
       - project data
   /docs 
       - documentations
+  /slurm
+      - slurm scripts
   /src
       - source codes
+  /submit
+      - files for the assignment submission
   .all-contributorsrc 
       - all contributers infomation
    requirements.txt
