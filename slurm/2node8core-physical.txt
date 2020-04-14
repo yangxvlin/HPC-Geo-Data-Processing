@@ -1,31 +1,31 @@
 ========== runs with 8 processors ==========
 
 ===== top 10 most commonly used hashtags =====
- 1. #auspol                  , 19,891
- 2. #coronavirus             , 10,125
- 3. #firefightaustralia      , 6,814
- 4. #oldme                   , 6,419
- 5. #sydney                  , 6,376
- 6. #scottyfrommarketing     , 5,185
- 7. #grammys                 , 5,085
- 8. #assange                 , 4,689
- 9. #sportsrorts             , 4,516
-10. #iheartawards            , 4,297
+ 1. #auspol                  , 3,258
+ 2. #iheartawards            , 1,132
+ 3. #australiafires          , 1,095
+ 4. #sydney                  , 991
+ 5. #climatechange           , 934
+ 6. #bushfires               , 889
+ 7. #winnercrosstourinbkk    , 858
+ 8. #crisisoninfiniteearths  , 811
+ 9. #australianfires         , 743
+10. #climateemergency        , 716
 
 ===== top 10 most commonly tweeted languages =====
- 1. English    ( en), 3,107,116
- 2. undefined  (und), 252,117
- 3. Thai       ( th), 134,571
- 4. Portuguese ( pt), 125,858
- 5. Spanish    ( es), 74,028
- 6. Japanese   ( ja), 49,929
- 7. Tagalog    ( tl), 44,560
- 8. Indonesian ( in), 42,296
- 9. French     ( fr), 38,098
-10. Arabic     ( ar), 24,501
+ 1. English    ( en), 395,655
+ 2. undefined  (und), 30,936
+ 3. Portuguese ( pt), 15,894
+ 4. Thai       ( th), 13,382
+ 5. Spanish    ( es), 9,075
+ 6. French     ( fr), 5,798
+ 7. Japanese   ( ja), 4,905
+ 8. Tagalog    ( tl), 4,564
+ 9. Indonesian ( in), 4,109
+10. Persian    ( fa), 3,161
 
-Programs runs 131.54420733451843(s)
+Programs runs 135.50136303901672(s)
 
-real	2m12.178s
-user	0m0.018s
-sys	0m0.026s
+real	2m17.955s
+user	0m0.020s
+sys	0m0.032s

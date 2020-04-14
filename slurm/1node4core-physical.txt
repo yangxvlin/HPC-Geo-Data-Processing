@@ -1,0 +1,31 @@
+========== runs with 4 processors ==========
+
+===== top 10 most commonly used hashtags =====
+ 1. #auspol                  , 6,598
+ 2. #iheartawards            , 2,162
+ 3. #scottyfrommarketing     , 1,955
+ 4. #sydney                  , 1,603
+ 5. #australiafires          , 1,480
+ 6. #climatechange           , 1,429
+ 7. #bushfires               , 1,267
+ 8. #connect_bts             , 1,170
+ 9. #shehnaazgill            , 1,139
+10. #tazan                   , 1,138
+
+===== top 10 most commonly tweeted languages =====
+ 1. English    ( en), 796,282
+ 2. undefined  (und), 58,747
+ 3. Portuguese ( pt), 32,085
+ 4. Thai       ( th), 22,569
+ 5. Spanish    ( es), 15,989
+ 6. French     ( fr), 12,353
+ 7. Tagalog    ( tl), 10,253
+ 8. Japanese   ( ja), 9,833
+ 9. Indonesian ( in), 9,223
+10. Arabic     ( ar), 6,391
+
+Programs runs 170.89073252677917(s)
+
+real	2m54.704s
+user	0m0.024s
+sys	0m0.045s

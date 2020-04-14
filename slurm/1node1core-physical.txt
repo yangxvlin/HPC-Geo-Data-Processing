@@ -24,8 +24,8 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-Programs runs 451.2339930534363(s)
+Programs runs 617.877804517746(s)
 
-real	7m31.729s
-user	0m0.020s
-sys	0m0.022s
+real	10m20.509s
+user	0m0.022s
+sys	0m0.028s
