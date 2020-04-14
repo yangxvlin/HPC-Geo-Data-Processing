@@ -1,11 +1,5 @@
 ========== runs with 1 processors ==========
 
-===== processor #0 does reading country code file for 0.000225067138671875(s) =====
-
-===== processor #0 does processing data for 409.61451387405396(s) =====
-
-===== processor #0 does calculating top n for 0.013384580612182617(s) =====
-
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
  2. #coronavirus             , 10,125
@@ -30,10 +24,8 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-===== processor #0 does dumping output for 6.699562072753906e-05(s) =====
+Programs runs 451.2339930534363(s)
 
-Programs runs 409.6283049583435(s)
-
-real	6m50.124s
+real	7m31.729s
 user	0m0.020s
-sys	0m0.025s
+sys	0m0.022s

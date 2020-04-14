@@ -1,4 +1,4 @@
-========== runs with 8 processors ==========
+========== runs with 16 processors ==========
 
 ===== top 10 most commonly used hashtags =====
  1. #auspol                  , 19,891
@@ -24,8 +24,8 @@
  9. French     ( fr), 38,098
 10. Arabic     ( ar), 24,501
 
-Programs runs 127.89964151382446(s)
+Programs runs 116.61998248100281(s)
 
-real	2m8.509s
-user	0m0.020s
-sys	0m0.039s
+real	1m58.568s
+user	0m0.018s
+sys	0m0.032s
