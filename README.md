@@ -43,7 +43,10 @@ mpiexec -n 8 python -m mpi4py main.py -country ./language.json -data ../data/sma
 ```
 cd slurm
 sbatch 1node1core.slurm > 1node1core-physical.out
+sbatch 1node4core.slurm > 1node4core-physical.out
 sbatch 1node8core.slurm > 1node8core-physical.out
+sbatch 1node16core.slurm > 1node16core-physical.out
+sbatch 1node24core.slurm > 1node24core-physical.out
 sbatch 2node8core.slurm > 2node8core-physical.out
 
 sbatch 1node1core-snowy.slurm > 1node1core-snowy.out
