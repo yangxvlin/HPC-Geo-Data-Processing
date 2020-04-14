@@ -90,12 +90,6 @@ def main(country_code_file_path, twitter_data_path):
         reduced_language_code_count = comm.reduce(heapq.nlargest(n, local_language_code, lambda x: x[1]), root=0, op=merge_list)
         reduced_hash_tag_count = comm.reduce(heapq.nlargest(n, local_hash_tag, lambda x: x[1]), root=0, op=merge_list)
 
-        # reduced_language_code_count = comm.reduce(language_code_count, root=0, op=operator.add)
-        # reduced_hash_tag_count = comm.reduce(hash_tag_count, root=0, op=operator.add)
-        # if comm_rank == 0:
-        #     reduced_hash_tag_count = hash_tag_count.most_common(n)
-        #     reduced_language_code_count = language_code_count.most_common(n)
-
     # b) single processor calculating top n
     else:
         reduced_hash_tag_count = hash_tag_count.most_common(n)
