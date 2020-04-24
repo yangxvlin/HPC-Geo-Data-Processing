@@ -66,3 +66,9 @@ sbatch 2node8core-cloud.slurm > 2node8core-cloud.out
 ```squeue -u xuliny```
 ### Spartan Weather Report 
 ```spartan_weather```
+
+## final results
+![](./docs/results.jpg)
+
+And I ask Rechard Snott why we lost 0.5 mark, in email he replied: 
+![](./docs/richard-reply.jpg)
